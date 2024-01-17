@@ -16,7 +16,7 @@
         <div id="register_card" class="">
             <div class="flex flex-col m-4 bg-white rounded-md">
                 <div class="flex items-center justify-center">
-                    <img class="h-16 mt-4 mb-6" src="images/logo.png" alt="">
+                    <a href="{{route("home")}}"><img class="h-16 mt-4 mb-6" src="images/logo.png" alt=""></a>
                 </div>
                 <div>
                     <div class="mt-4 mr-10 ml-10 mb-10 grid grid-flow-row grid-rows-[1fr,5fr]">

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name("home");
 
 Route::get('/login', function(){
     return view('login.login');
@@ -28,3 +28,10 @@ Route::get('/register', function(){
 Route::get('/forgot', function(){
     return view('login.forgot');
 })->name("forgot");
+
+
+// group routes below
+
+Route::get('/dashboard', function(){
+    return view('layouts.mainLayout');
+})->name("layout");
