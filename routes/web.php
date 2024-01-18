@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +31,12 @@ Route::get('/forgot', function(){
     return view('login.forgot');
 })->name("forgot");
 
+// create user or registration
+
+Route::post('/registration', [UserController::class, 'create_user'])->name("create_user");
 
 // group routes below
 
 Route::get('/dashboard', function(){
     return view('menus.dashboard.dashboard');
-})->middleware('auth')->name("layout");
+})->name("dashboard");

@@ -71,7 +71,7 @@
             <div class=" gid grid-col pt-5">
                 <p  class="text-green-500 flex items-center justify-center mt-6">OUR AWESOME FEATURES</p>
                 <h1 class="text-purple-900 text-4xl font-semibold flex pt-2 pb-4 items-center justify-center">Features for property owners</h1>
-            <div class=" grid grid-rows-2 gap-2 pt-10 mb-20">
+            <div class=" grid lg:grid-rows-2 grid-rows-1 gap-2 pt-10 mb-20">
                 <div class=" grid grid-flow-col grid-cols-3">
                     <div class="group flex flex-col items-center justify-items-center p-6 ml-3 mr-1.5">
                         <div class="h-32 flex items-center justify-center ">

@@ -8,12 +8,9 @@
 
     @vite('resources/css/app.css')
 </head>
-<body class="grid w-full">
-    <div id="main-container" class="grid grid-flow-col grid-cols-[1.5fr,1.12fr,1.5fr] h-screen w-full bg-gray-300">
-        <div id="left_part" class="">
+<body class="flex justify-center h-full w-full bg-gray-400">
 
-        </div>
-        <div id="login_card" class="">
+        <div id="login_card" >
             <div class="grid grid-flow-row grid-rows-[1fr,5fr] m-4 bg-white rounded-md">
                 <div class="flex items-center justify-center">
                     <a href="{{route("home")}}"><img class="h-16 mt-4 mb-6" src="images/logo.png" alt=""></a>
@@ -22,7 +19,7 @@
                     <div class="mt-8 mr-10 ml-10 mb-10 grid grid-flow-row grid-rows-[1fr,2fr,1fr]">
                         <div class="">
                             <h1 class="text-2xl font-semibold">Sign-In</h1>
-                            <p class="text-gray-600 text-lg">Access the RENTALFLO port using your email and password</p>
+                            <p class="text-gray-600 text-lg">Access the RENTALFLO port using your email <br> and password</p>
                         </div>
                         <div class="">
                             <form action="">
@@ -61,10 +58,7 @@
                 </div>
             </div>
         </div>
-        <div id="right_part" class="">
 
-        </div>
-    </div>
 
 </body>
 </html>

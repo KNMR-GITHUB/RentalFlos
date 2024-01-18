@@ -8,6 +8,7 @@ export default {
   theme: {
     extend: {
         height:['group-hover'],
+        width:{'custom_width':'475px'}
     },
   },
   plugins: [],

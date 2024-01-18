@@ -8,11 +8,8 @@
 
     @vite('resources/css/app.css')
 </head>
-<body class="grid w-full">
-    <div id="main-container" class="grid grid-flow-col grid-cols-[1.5fr,1.12fr,1.5fr] h-screen w-full bg-gray-300">
-        <div id="left_part" class="">
+<body class="flex justify-center w-full h-full bg-gray-400">
 
-        </div>
         <div id="register_card" class="">
             <div class="flex flex-col m-4 bg-white rounded-md">
                 <div class="flex items-center justify-center">
@@ -25,31 +22,43 @@
                             <p class="text-gray-600 text-lg">Create New RENTALFLO Account</p>
                         </div>
                         <div>
-                            <div class="">
-                            <form action="">
+                            <form action="{{route('create_user')}}" method="post">
+                                @csrf
                                 <div>
                                     <label for="fname" class="mt-2 block text-gray-700 text-sm font-bold mb-2">First Name</label>
-                                    <input type="text" placeholder="Enter your first name" id="fname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <input type="text" placeholder="Enter your first name" id="fname" name="fname" value="{{old('fname')}}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    @error('fname')
+                                        <span class="text-red-400">{{$message}}</span>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label for="lname" class="mt-4 block text-gray-700 text-sm font-bold mb-2">Last Name</label>
-                                    <input type="text" placeholder="Enter your last name" id="lname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <input type="text" placeholder="Enter your last name" id="lname" name="lname" value="{{old('lname')}}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    @error('lname')
+                                        <span class="text-red-400">{{$message}}</span>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label for="email" class="mt-4 block text-gray-700 text-sm font-bold mb-2">Email</label>
-                                    <input type="email" placeholder="Enter your email address" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <input type="email" placeholder="Enter your email address" id="email" name="email" value="{{old('email')}}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    @error('email')
+                                        <span class="text-red-400">{{$message}}</span>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label for="password" class="mt-4 block text-gray-700 text-sm font-bold mb-2">Password</label>
-                                    <input type="password" placeholder="Enter your passcode" id="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <input type="password" placeholder="Enter your passcode" id="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    @error('password')
+                                        <span class="text-red-400">{{$message}}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="flex gap-2 mt-2">
-                                    <input type="checkbox">
+                                    <input type="checkbox" name="checkbox">
                                     <p>I agree to RENTALFLO Privacy Policy & Terms.*</p>
                                 </div>
                                 <div>
-                                    <button type="button" class="mt-6 rounded-md bg-purple-800 p-4 w-full text-white">
+                                    <button  class="mt-6 rounded-md bg-purple-800 p-4 w-full text-white">
                                         Register
                                     </button>
                                 </div>
@@ -64,10 +73,7 @@
                 </div>
             </div>
         </div>
-        <div id="right_part" class="">
 
-        </div>
-    </div>
 
 </body>
 </html>

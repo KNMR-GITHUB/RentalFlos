@@ -11,7 +11,7 @@
     <div class="grid grid-flow-col grid-cols-[1.1fr,6fr]">
         <div id="nav" class="sticky top-0 h-screen grid grid-flow-row grid-rows-[1fr,13fr] ">
             <div class=" h-16 flex items-center pl-4 border-b border-gray-300">
-                <img class="h-9" src="images/logo.png" alt="">
+                <img class="h-9 w-24" src="images/logo.png" alt="">
             </div>
             <div class="h-full p-8">
                 <ul>
