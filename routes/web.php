@@ -33,5 +33,5 @@ Route::get('/forgot', function(){
 // group routes below
 
 Route::get('/dashboard', function(){
-    return view('layouts.mainLayout');
-})->name("layout");
+    return view('menus.dashboard.dashboard');
+})->middleware('auth')->name("layout");

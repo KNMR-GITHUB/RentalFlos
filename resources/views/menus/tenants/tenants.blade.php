@@ -1,9 +1,6 @@
-@extends('mainLayout.blade.php')
+@extends('layouts.mainLayout')
 @section('content')
     <div>
-        <div>
-            @include('layouts.sidebar')
-        </div>
         <div>
             <!-- Include the content inside here -->
         </div>
