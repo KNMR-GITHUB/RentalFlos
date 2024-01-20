@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticateController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -35,8 +36,17 @@ Route::get('/forgot', function(){
 
 Route::post('/registration', [UserController::class, 'create_user'])->name("create_user");
 
-// group routes below
+// user login
+Route::post('/authenticate', [AuthenticateController::class, 'authenticate'])->name('authenticate');
+// user logout
+Route::post('/logout', [AuthenticateController::class, 'logout'])->name('logout');
 
+// group routes below
+// routes for menu items
 Route::get('/dashboard', function(){
     return view('menus.dashboard.dashboard');
-})->name("dashboard");
+})->middleware('auth')->name("dashboard");
+
+Route::get('/properties', function(){
+    return view('menus.properties.properties');
+})->middleware('auth')->name("properties");
