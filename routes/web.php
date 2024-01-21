@@ -1,20 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthenticateController;
+use App\Http\Controllers\propertiesController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// basic routes
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,7 +24,7 @@ Route::get('/forgot', function(){
     return view('login.forgot');
 })->name("forgot");
 
-// create user or registration
+// registration,login,logout routes
 
 Route::post('/registration', [UserController::class, 'create_user'])->name("create_user");
 
@@ -41,12 +33,47 @@ Route::post('/authenticate', [AuthenticateController::class, 'authenticate'])->n
 // user logout
 Route::post('/logout', [AuthenticateController::class, 'logout'])->name('logout');
 
-// group routes below
+//
 // routes for menu items
+//
+
+
+
+// properties routes
+
+Route::get('/properties', [propertiesController::class,'display'])->middleware('auth')->name("properties");
+
+Route::get('/createProperties', [propertiesController::class,'create'])->middleware('auth')->name("createProperties");
+
+Route::post('/storeProperties', [propertiesController::class,'store'])->middleware('auth')->name("storeProperties");
+
+
+// dashboard routes
+
 Route::get('/dashboard', function(){
     return view('menus.dashboard.dashboard');
 })->middleware('auth')->name("dashboard");
 
-Route::get('/properties', function(){
-    return view('menus.properties.properties');
-})->middleware('auth')->name("properties");
+// tenants routes
+
+Route::get('/tenants', function(){
+    return view('menus.tenants.tenants');
+})->middleware('auth')->name("tenants");
+
+// rent routes
+
+Route::get('/rent', function(){
+    return view('menus.rent.rent');
+})->middleware('auth')->name("rent");
+
+// expenses routes
+
+Route::get('/expenses', function(){
+    return view('menus.expenses.expenses');
+})->middleware('auth')->name("expenses");
+
+// settings routes
+
+Route::get('/settings', function(){
+    return view('menus.settings.settings');
+})->middleware('auth')->name("settings");

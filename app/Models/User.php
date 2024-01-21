@@ -43,4 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function properties(){
+        return $this->hasMany(Property::class)->orderBy("created_at","DESC");
+    }
 }

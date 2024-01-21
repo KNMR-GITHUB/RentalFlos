@@ -17,10 +17,10 @@
                 <ul>
                     <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('dashboard')}}">Dashboard</a></li>
                     <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('properties')}}">Properties</a></li>
-                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="">Tenants</a></li>
-                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="">Rent</a></li>
-                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="">Expenses</a></li>
-                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="">Settings</a></li>
+                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('tenants')}}">Tenants</a></li>
+                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('rent')}}">Rent</a></li>
+                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('expenses')}}">Expenses</a></li>
+                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('settings')}}">Settings</a></li>
                 </ul>
             </div>
 
