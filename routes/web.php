@@ -77,3 +77,5 @@ Route::get('/expenses', function(){
 Route::get('/settings', function(){
     return view('menus.settings.settings');
 })->middleware('auth')->name("settings");
+
+
