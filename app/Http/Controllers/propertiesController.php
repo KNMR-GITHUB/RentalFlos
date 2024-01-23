@@ -48,4 +48,10 @@ class propertiesController extends Controller
 
         return redirect()->route('properties');
     }
+
+    public function show(Property $property){
+        return view('menus.properties.propertyDetails',[
+            'property' => $property
+        ]);
+    }
 }

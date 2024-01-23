@@ -7,7 +7,7 @@
                 <p class="mt-2 text-gray-400 font-medium">You currently have {{$properties->count()}} properties.</p>
             </div>
             <div class="flex items-center gap-4">
-                <button class="bg-white text-gray-700 rounded-md pl-4 pr-4 pt-2 pb-2 border border-gray-300">↓  Export</button>
+                <button class="bg-white text-gray-700 rounded-md pl-4 pr-4 pt-2 pb-2 border border-gray-300 hover:bg-gray-500 hover:text-white">↓  Export</button>
                 <a href="{{route('createProperties')}}"><button class="bg-purple-800 text-white rounded-md pr-4 pl-4 pt-2 pb-2">+ New Property</button></a>
             </div>
         </div>
@@ -31,7 +31,7 @@
                         <h3 class="text-green-500">active</h3>
                         <h3 class="text-green-500">vacant</h3>
                         <div>
-                            <button class="bg-blue-300 rounded-md pr-2 pl-2 text-white hover:bg-blue-700">View details</button>
+                            <a href="{{route('showProperties',$property->id)}}"><button class="bg-blue-300 rounded-md pr-2 pl-2 text-white hover:bg-blue-700">View details</button></a>
                             <button class="bg-green-300 rounded-md pr-2 pl-2 text-white hover:bg-green-700">Edit</button>
                             <button class="bg-red-300 rounded-md pr-2 pl-2 text-white hover:bg-red-700">Deactivate</button>
                         </div>

@@ -15,10 +15,12 @@
                 </div>
             </div>
             <div class=" bg-white border border-gray-300 py-8 rounded-sm flex justify-center items-center">
-                <div>
-                    <img src="images/profile.png" alt="profile">
-                    <p class="flex justify-center mt-4">Profile</p>
-                </div>
+                <a href="{{route('edit_profile')}}">
+                    <div>
+                        <img src="images/profile.png" alt="profile">
+                        <p class="flex justify-center mt-4">Profile</p>
+                    </div>
+                </a>
             </div>
             <div class=" bg-white border border-gray-300 py-8 rounded-sm flex justify-center items-center">
                 <div class="">

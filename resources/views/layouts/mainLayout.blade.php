@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RentalFlos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     @vite('resources/css/app.css')
 </head>
 <body>
@@ -15,12 +16,12 @@
             </div>
             <div class="h-full p-8">
                 <ul>
-                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('dashboard')}}">Dashboard</a></li>
-                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('properties')}}">Properties</a></li>
-                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('tenants')}}">Tenants</a></li>
-                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('rent')}}">Rent</a></li>
-                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('expenses')}}">Expenses</a></li>
-                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('settings')}}">Settings</a></li>
+                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('dashboard')}}"><i class="fa-solid fa-table-cells-large mr-3"></i> Dashboard</a></li>
+                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('properties')}}"><i class="fa-solid fa-hotel mr-3"></i> Properties</a></li>
+                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('tenants')}}"><i class="fa-solid fa-user-group mr-2"></i> Tenants</a></li>
+                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('rent')}}"><i class="fa-solid fa-indian-rupee-sign mr-4 ml-1"></i> Rent</a></li>
+                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('expenses')}}"><i class="fa-solid fa-coins mr-3"></i> Expenses</a></li>
+                    <li class="text-gray-600 font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('settings')}}"><i class="fa-solid fa-sliders mr-3"></i> Settings</a></li>
                 </ul>
             </div>
 

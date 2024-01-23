@@ -37,6 +37,11 @@ Route::post('/logout', [AuthenticateController::class, 'logout'])->name('logout'
 // routes for menu items
 //
 
+// dashboard routes
+
+Route::get('/dashboard', function(){
+    return view('menus.dashboard.dashboard');
+})->middleware('auth')->name("dashboard");
 
 
 // properties routes
@@ -47,12 +52,9 @@ Route::get('/createProperties', [propertiesController::class,'create'])->middlew
 
 Route::post('/storeProperties', [propertiesController::class,'store'])->middleware('auth')->name("storeProperties");
 
+// the {property} is basically an ID that we pass
+Route::get('/viewProperties/{property}', [propertiesController::class,'show'])->middleware('auth')->name("showProperties");
 
-// dashboard routes
-
-Route::get('/dashboard', function(){
-    return view('menus.dashboard.dashboard');
-})->middleware('auth')->name("dashboard");
 
 // tenants routes
 
@@ -77,5 +79,11 @@ Route::get('/expenses', function(){
 Route::get('/settings', function(){
     return view('menus.settings.settings');
 })->middleware('auth')->name("settings");
+
+Route::get('/edit_profile', function(){
+    return view('menus.settings.edit_profile');
+})->middleware('auth')->name("edit_profile");
+
+
 
 
