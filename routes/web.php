@@ -55,6 +55,10 @@ Route::post('/storeProperties', [propertiesController::class,'store'])->middlewa
 // the {property} is basically an ID that we pass
 Route::get('/viewProperties/{property}', [propertiesController::class,'show'])->middleware('auth')->name("showProperties");
 
+Route::get('/editProperties/{property}', [propertiesController::class,'edit'])->middleware('auth')->name("editProperties");
+
+Route::put('/updateProperties/{property}', [propertiesController::class,'update'])->middleware('auth')->name("updateProperties");
+
 
 // tenants routes
 
