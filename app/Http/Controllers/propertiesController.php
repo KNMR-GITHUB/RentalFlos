@@ -9,7 +9,15 @@ class propertiesController extends Controller
 {
 
     public function display(){
-        $properties = Property::all();
+
+        // getting the authenticated user id
+        $container = auth()->user();
+
+        // calling data with auth user
+        $properties = $container->properties;
+
+        // alternatively, not using the above
+        // $properties = Property::where('user_id','=',auth()->id());
 
         return view('menus.properties.properties',['properties' => $properties]);
     }

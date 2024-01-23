@@ -10,7 +10,7 @@
 </head>
 <body class="flex justify-center w-full h-full bg-gray-400">
 
-        <div id="register_card" class="">
+        <div id="register_card" class=" w-custom_width">
             <div class="flex flex-col m-4 bg-white rounded-md">
                 <div class="flex items-center justify-center">
                     <a href="{{route("home")}}"><img class="h-16 mt-4 mb-6" src="images/logo.png" alt=""></a>
