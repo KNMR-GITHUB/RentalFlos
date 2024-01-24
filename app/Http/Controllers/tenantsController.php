@@ -2,11 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tenant;
 use Illuminate\Http\Request;
 
 class tenantsController extends Controller
 {
+    public function display(){
+
+        // getting the authenticated user id
+        $container = auth()->user();
+
+        // calling data with auth user
+        $tenants = $container->tenants;
+
+        // alternatively, not using the above
+        // $properties = Property::where('user_id','=',auth()->id());
+
+        return view('menus.tenants.tenants',['tenants' => $tenants]);
+    }
+
     public function create(){
         return view('menus.tenants.createTenants');
+    }
+
+    public function store(){
+        $validated = request()->validate([
+            'name' => 'required|min:2|max:30',
+            'address' => 'required|min:2|max:50',
+            'contactEmail' => 'required|email|',
+            'contactNo' => 'required|min_digits:10|max_digits:10|numeric',
+        ]);
+
+        $validated['user_id'] = auth()->id();
+
+        $tenant = Tenant::create($validated);
+
+        return redirect()->route('tenants');
     }
 }

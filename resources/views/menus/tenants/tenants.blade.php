@@ -20,6 +20,15 @@
                 <h3>Status</h3>
                 <div></div>
             </div>
+            @if ($tenants->count() > 0)
+                @foreach ($tenants as $tenant)
+                    {{$tenant->name}}
+                @endforeach
+            @else
+                <div class="flex justify-center pt-2">
+                    <p>There are no properties.</p>
+                </div>
+            @endif
 
 
         </div>

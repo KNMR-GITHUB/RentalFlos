@@ -68,6 +68,8 @@ Route::get('/tenants', function(){
 
 Route::get('/createTenants', [tenantsController::class,'create'])->middleware('auth')->name("createTenants");
 
+Route::get('/storeTenants', [tenantsController::class,'store'])->middleware('auth')->name("storeTenants");
+
 // rent routes
 
 Route::get('/rent', function(){

@@ -35,9 +35,9 @@ class propertiesController extends Controller
             'country' => 'required|min:2|max:30',
             'state' => 'required|min:2|max:30',
             'city' => 'required|min:2|max:30',
-            'pincode' => 'required|min_digits:6|numeric',
+            'pincode' => 'required|min_digits:6|max_digits:6|numeric',
             'rent' => 'required|digits_between:4,10|numeric',
-            'description' => 'nullable|max:200',
+            'description' => 'nullable|max:300',
         ]);
 
         $validated['user_id'] = auth()->id();
