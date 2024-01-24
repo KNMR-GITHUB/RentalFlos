@@ -62,13 +62,11 @@ Route::put('/updateProperties/{property}', [propertiesController::class,'update'
 
 // tenants routes
 
-Route::get('/tenants', function(){
-    return view('menus.tenants.tenants');
-})->middleware('auth')->name("tenants");
+Route::get('/tenants', [tenantsController::class,'display'])->middleware('auth')->name("tenants");
 
 Route::get('/createTenants', [tenantsController::class,'create'])->middleware('auth')->name("createTenants");
 
-Route::get('/storeTenants', [tenantsController::class,'store'])->middleware('auth')->name("storeTenants");
+Route::post('/storeTenants', [tenantsController::class,'store'])->middleware('auth')->name("storeTenants");
 
 // rent routes
 

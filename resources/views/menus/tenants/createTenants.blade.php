@@ -19,24 +19,40 @@
                 </div>
                 <div class="border-b gap-4 border-gray-300 grid lg:grid-cols-2">
                     <div class="mt-2">
-                        <label class="block text-gray-700 font-semibold" for="name">Name</label>
-                        <input class="rounded-sm border pl-2 pt-2 pb-2 mt-2 border-gray-300 w-full" type="text" name="name" placeholder="Enter name">
+                        <label class="block text-gray-700 font-semibold" for="tenantName">Name</label>
+                        <input class="rounded-sm border pl-2 pt-2 pb-2 mt-2 border-gray-300 w-full" type="text" name="tenantName" placeholder="Enter name">
+                        @error('name')
+                            <span class="text-red-400">{{$message}}</span>
+                        @enderror
                     </div>
+
                     <div class="mt-2">
-                        <label class="block text-gray-700 font-semibold" for="contactNo.">Contact No.</label>
-                        <input class="rounded-sm pl-2 pt-2 pb-2 border mt-2 border-gray-300 w-full" type="number" name="contactNo." placeholder="Enter contact no.">
+                        <label class="block text-gray-700 font-semibold" for="contactNo">Contact No.</label>
+                        <input class="rounded-sm pl-2 pt-2 pb-2 border mt-2 border-gray-300 w-full" type="number" name="contactNo" placeholder="Enter contact no.">
+                        @error('contactNo')
+                            <span class="text-red-400">{{$message}}</span>
+                        @enderror
                     </div>
+
                     <div class="mt-2 mb-6">
                         <label class="block text-gray-700 font-semibold" for="contactEmail">Contact Email</label>
                         <input class="rounded-sm pl-2 pt-2 pb-2 border mt-2 border-gray-300 w-full" type="email" name="contactEmail" placeholder="Enter contact email">
+                        @error('contactEmail')
+                            <span class="text-red-400">{{$message}}</span>
+                        @enderror
                     </div>
+
 
                 </div>
                 <div class="border-b gap-4 border-gray-300 grid">
                     <div class="mt-2 mb-6">
                         <label class="block text-gray-700 font-semibold" for="address">Address</label>
                         <textarea class="rounded-sm pl-2 pt-2 pb-2 border mt-2 border-gray-300 w-full" name="address" rows="2" placeholder="Enter full address"></textarea>
+                        @error('address')
+                            <span class="text-red-400">{{$message}}</span>
+                        @enderror
                     </div>
+
                 </div>
                 <div class="border-b gap-4 border-gray-300 grid">
                     <div class="mt-2 mb-6 flex items-center justify-between">
