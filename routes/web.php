@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\propertiesController;
+use App\Http\Controllers\tenantsController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -52,7 +53,6 @@ Route::get('/createProperties', [propertiesController::class,'create'])->middlew
 
 Route::post('/storeProperties', [propertiesController::class,'store'])->middleware('auth')->name("storeProperties");
 
-// the {property} is basically an ID that we pass
 Route::get('/viewProperties/{property}', [propertiesController::class,'show'])->middleware('auth')->name("showProperties");
 
 Route::get('/editProperties/{property}', [propertiesController::class,'edit'])->middleware('auth')->name("editProperties");
@@ -65,6 +65,8 @@ Route::put('/updateProperties/{property}', [propertiesController::class,'update'
 Route::get('/tenants', function(){
     return view('menus.tenants.tenants');
 })->middleware('auth')->name("tenants");
+
+Route::get('/createTenants', [tenantsController::class,'create'])->middleware('auth')->name("createTenants");
 
 // rent routes
 
