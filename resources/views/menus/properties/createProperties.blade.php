@@ -40,9 +40,9 @@
 
                     <div>
                         <label for="country" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">Country</label>
-                        <select name="country" class="border rounded w-full py-2 px-3 text-gray-400 text-sm">
+                        <select name="country" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
                             <option class="text-gray-400" value="" selected>Select country</option>
-                            <option value="India">India</option>
+                            <option value="India" class="text-gray-700 ">India</option>
                         </select>
                         @error('country')
                             <span class="text-red-400">{{$message}}</span>
@@ -51,9 +51,9 @@
 
                     <div>
                         <label for="state" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">State</label>
-                        <select name="country" class="border rounded w-full py-2 px-3 text-gray-400 text-sm">
+                        <select name="state" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
                             <option class="text-gray-400" value="" selected>Select state</option>
-                            <option value="Arunachal">Arunachal</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
                         </select>
                         @error('state')
                             <span class="text-red-400">{{$message}}</span>
@@ -62,7 +62,7 @@
 
                     <div>
                         <label for="city" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">City</label>
-                        <select name="country" class="border rounded w-full py-2 px-3 text-gray-400 text-sm">
+                        <select name="city" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
                             <option class="text-gray-400" value="" selected>Select city</option>
                             <option value="Itanagar">Itanagar</option>
                             <option value="Naharlagun">Naharlagun</option>

@@ -37,7 +37,7 @@
                     <div class="mt-2 mb-6">
                         <label class="block text-gray-700 font-semibold" for="email">Contact Email</label>
                         <input class="rounded-sm pl-2 pt-2 pb-2 border mt-2 border-gray-300 w-full" type="email" name="email" placeholder="Enter contact email">
-                        @error('contactEmail')
+                        @error('email')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
                     </div>
@@ -57,7 +57,7 @@
                 <div class="border-b gap-4 border-gray-300 grid">
                     <div class="mt-2 mb-6 flex items-center justify-between">
                         <label class=" text-gray-700 font-semibold">Add members</label>
-                        <button class="bg-purple-800 mt-6 px-5 py-2 rounded-md text-white"> +</button>
+                        <a class="bg-purple-800 mt-6 px-5 py-2 rounded-md text-white"> +</a>
                     </div>
                 </div>
                 <div class="border-b gap-4 border-gray-300 grid">

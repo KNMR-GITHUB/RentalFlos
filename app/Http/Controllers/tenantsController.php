@@ -29,7 +29,7 @@ class tenantsController extends Controller
 
         $container = request()->validate([
             'name' => 'required|min:2|max:30',
-            'contactNo' => 'required|numeric|min_digits:10',
+            'contactNo' => 'required|numeric|min_digits:10|max_digits:10',
             'email' => 'required|email',
             'address' => 'required|min:5|max:50'
         ]);
@@ -37,17 +37,6 @@ class tenantsController extends Controller
         $container['user_id'] = auth()->id();
 
         $tenant = Tenant::create($container);
-
-        // $validated = request()->validate([
-        //     'name' => 'required|min:2|max:30',
-        //     'address' => 'required|min:2|max:50',
-        //     'contactEmail' => 'required|email',
-        //     'contactNo' => 'required|min_digits:10|max_digits:10|numeric',
-        // ]);
-
-        // $validated['user_id'] = auth()->id();
-
-        // $tenant = Tenant::create($validated);
 
         return redirect()->route('tenants');
     }

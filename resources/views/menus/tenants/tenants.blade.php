@@ -20,34 +20,37 @@
                 <h3>Status</h3>
                 <div></div>
             </div>
-            <div class="p-4 grid grid-flow-col grid-cols-[2fr,2fr,1fr,1fr,1fr,2fr] border-b border-gray-300 pb-4 text-slate-400">
+
                 @if ($tenants->count() > 0)
                     @foreach ($tenants as $tenant)
-                        <div class="flex">
-                            <div class="pr-3">
-                                <button class="rounded-full bg-red-500 px-4 py-2">{{$tenant->name[0]}}</button>
+                        <div class="p-4 grid grid-flow-col grid-cols-[2fr,2fr,1fr,1fr,1fr,2fr] border-b border-gray-300 pb-4 text-slate-400">
+                            <div class="pl-4  grid grid-flow-col grid-cols-[2fr,2fr,1fr,1fr,1fr,2fr] text-slate-400">
+                                <div class="pr-3">
+                                    <button class="rounded-full bg-red-500 px-4 py-2">{{$tenant->name[0]}}</button>
+                                </div>
+                                <div>
+                                    <h3>{{$tenant->name}}</h3>
+                                    <h4 class="text-sm">{{$tenant->email}}</h4>
+                                </div>
                             </div>
+
+                            <h3></h3>
+                            <h3>{{$tenant->contactNo}}</h3>
+                            <h3></h3>
+                            <h3></h3>
                             <div>
-                                <h3>{{$tenant->name}}</h3>
-                                <h4 class="text-sm">{{$tenant->email}}</h4>
+                                <a href=""><button class="bg-blue-300 rounded-md pr-2 pl-2 text-white hover:bg-blue-700">View details</button></a>
+                                <a href=""><button class="bg-green-300 rounded-md pr-2 pl-2 text-white hover:bg-green-700">Edit</button></a>
+                                <button class="bg-red-300 rounded-md pr-2 pl-2 text-white hover:bg-red-700">Deactivate</button>
                             </div>
                         </div>
-
-                        <h3></h3>
-                        <h3>{{$tenant->contactNo}}</h3>
-                        <h3></h3>
-                        <h3></h3>
-                        <div>
-                            <a href=""><button class="bg-blue-300 rounded-md pr-2 pl-2 text-white hover:bg-blue-700">View details</button></a>
-                            <a href=""><button class="bg-green-300 rounded-md pr-2 pl-2 text-white hover:bg-green-700">Edit</button></a>
-                            <button class="bg-red-300 rounded-md pr-2 pl-2 text-white hover:bg-red-700">Deactivate</button></div>
                     @endforeach
                 @else
                     <div class="flex justify-center pt-2">
                         <p>There are no properties.</p>
                     </div>
                 @endif
-            </div>
+
 
 
 
