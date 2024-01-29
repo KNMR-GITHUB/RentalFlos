@@ -40,4 +40,35 @@ class tenantsController extends Controller
 
         return redirect()->route('tenants');
     }
+
+    public function show(Tenant $tenant){
+        return view('menus.tenants.tenantsDetails',[
+            'tenant' => $tenant
+        ]);
+    }
+
+    public function edit(Tenant $tenant){
+        return view('menus.tenants.tenantsEdit',[
+            'tenant' => $tenant
+        ]);
+    }
+
+    public function update(Tenant $tenant){
+
+        $validated = request()->validate([
+            'name' => 'required|min:2|max:30',
+            'contactNo' => 'required|numeric|min_digits:10|max_digits:10',
+            'email' => 'required|email',
+            'address' => 'required|min:5|max:50'
+        ]);
+
+        $tenant->name = $validated['name'];
+        $tenant->contactNo = $validated['contactNo'];
+        $tenant->email = $validated['email'];
+        $tenant->address = $validated['address'];
+
+        $tenant->save();
+
+        return redirect()->route('showTenants',$tenant->id)->with('success',"tenant updated successfully.");
+    }
 }

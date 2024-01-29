@@ -39,8 +39,8 @@
                             <h3></h3>
                             <h3></h3>
                             <div>
-                                <a href=""><button class="bg-blue-300 rounded-md pr-2 pl-2 text-white hover:bg-blue-700">View details</button></a>
-                                <a href=""><button class="bg-green-300 rounded-md pr-2 pl-2 text-white hover:bg-green-700">Edit</button></a>
+                                <a href="{{route('showTenants',$tenant->id)}}"><button class="bg-blue-300 rounded-md pr-2 pl-2 text-white hover:bg-blue-700">View details</button></a>
+                                <a href="{{route('editTenants',$tenant->id)}}"><button class="bg-green-300 rounded-md pr-2 pl-2 text-white hover:bg-green-700">Edit</button></a>
                                 <button class="bg-red-300 rounded-md pr-2 pl-2 text-white hover:bg-red-700">Deactivate</button>
                             </div>
                         </div>

@@ -29,6 +29,8 @@ Route::get('/forgot', function(){
 
 Route::post('/registration', [UserController::class, 'create_user'])->name("create_user");
 
+Route::post('/updateUsers/{user}', [UserController::class, 'update'])->middleware('auth')->name("updateUsers");
+
 // user login
 Route::post('/authenticate', [AuthenticateController::class, 'authenticate'])->name('authenticate');
 // user logout
@@ -67,6 +69,12 @@ Route::get('/tenants', [tenantsController::class,'display'])->middleware('auth')
 Route::get('/createTenants', [tenantsController::class,'create'])->middleware('auth')->name("createTenants");
 
 Route::post('/storeTenants', [tenantsController::class,'store'])->middleware('auth')->name("storeTenants");
+
+Route::get('/viewTenants/{tenant}', [tenantsController::class,'show'])->middleware('auth')->name("showTenants");
+
+Route::get('/editTenants/{tenant}', [tenantsController::class,'edit'])->middleware('auth')->name("editTenants");
+
+Route::put('/updateTenants/{tenant}', [tenantsController::class,'update'])->middleware('auth')->name("updateTenants");
 
 // rent routes
 

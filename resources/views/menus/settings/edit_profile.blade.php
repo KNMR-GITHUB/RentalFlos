@@ -12,7 +12,8 @@
 
         </div>
         <div class="bg-white grid rounded-sm p-6 border border-gray-300 mt-8">
-            <form action="" method='post'>
+            <form action="{{route('updateUsers',Auth::user()->id)}}" method='post'>
+                @csrf
                 <div class="border-b border-gray-300">
                     <input class="mb-4" type="text" placeholder="image">
                 </div>
@@ -20,14 +21,23 @@
                     <div class="mt-2">
                         <label class="block text-gray-700 font-semibold" for="lname">Last Name</label>
                         <input class="rounded-sm p-3 border mt-2 border-gray-300 w-full" type="text" name="lname" value="{{Auth::user()->lname}}">
+                        @error('lname')
+                            <span class="text-red-400">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="mt-2">
                         <label class="block text-gray-700 font-semibold" for="fname">First Name</label>
                         <input class="rounded-sm p-3 border mt-2 border-gray-300 w-full" type="text" name="fname" value="{{Auth::user()->fname}}">
+                        @error('fname')
+                            <span class="text-red-400">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="mt-2 mb-6">
                         <label class="block text-gray-700 font-semibold" for="email">Email Address</label>
                         <input class="rounded-sm p-3 border mt-2 border-gray-300 w-full" type="text" name="email" value="{{Auth::user()->email}}">
+                        @error('email')
+                            <span class="text-red-400">{{$message}}</span>
+                        @enderror
                     </div>
 
                 </div>
