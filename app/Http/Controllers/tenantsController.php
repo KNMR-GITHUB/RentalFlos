@@ -30,7 +30,7 @@ class tenantsController extends Controller
         $container = request()->validate([
             'name' => 'required|min:2|max:30',
             'contactNo' => 'required|numeric|min_digits:10',
-            'contactEmail' => 'required|email',
+            'email' => 'required|email',
             'address' => 'required|min:5|max:50'
         ]);
 

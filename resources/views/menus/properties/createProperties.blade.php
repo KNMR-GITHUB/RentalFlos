@@ -40,7 +40,10 @@
 
                     <div>
                         <label for="country" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">Country</label>
-                        <input type="text" placeholder="Select country" id="country" name="country" value="{{old('country')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
+                        <select name="country" class="border rounded w-full py-2 px-3 text-gray-400 text-sm">
+                            <option class="text-gray-400" value="" selected>Select country</option>
+                            <option value="India">India</option>
+                        </select>
                         @error('country')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
@@ -48,7 +51,10 @@
 
                     <div>
                         <label for="state" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">State</label>
-                        <input type="text" placeholder="Select state" id="state" name="state" value="{{old('state')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
+                        <select name="country" class="border rounded w-full py-2 px-3 text-gray-400 text-sm">
+                            <option class="text-gray-400" value="" selected>Select state</option>
+                            <option value="Arunachal">Arunachal</option>
+                        </select>
                         @error('state')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
@@ -56,8 +62,14 @@
 
                     <div>
                         <label for="city" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">City</label>
-                        <input type="text" placeholder="Select city" id="city" name="city" value="{{old('city')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
-                        @error('city')
+                        <select name="country" class="border rounded w-full py-2 px-3 text-gray-400 text-sm">
+                            <option class="text-gray-400" value="" selected>Select city</option>
+                            <option value="Itanagar">Itanagar</option>
+                            <option value="Naharlagun">Naharlagun</option>
+                            <option value="Nirjuli">Nirjuli</option>
+                            <option value="Doimukh">Doimukh</option>
+                        </select>
+                        @error('country')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
                     </div>

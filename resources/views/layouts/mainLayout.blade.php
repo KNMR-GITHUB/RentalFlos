@@ -12,7 +12,7 @@
     <div class="grid grid-flow-col grid-cols-[1.1fr,6fr]">
         <div id="nav" class="sticky top-0 h-screen grid grid-flow-row grid-rows-[1fr,13fr] ">
             <div class=" h-16 flex items-center pl-4 border-b border-gray-300">
-                <a href="{{route('dashboard')}}"><img class="h-9" src="images/logo.png" alt="rental flo logo"></a>
+                <a href="{{route('dashboard')}}"><img class="h-9" src='/images/logo.png' alt="rental flo logo"></a>
             </div>
             <div class="h-full p-8">
                 <ul>
@@ -52,7 +52,17 @@
             </div>
             <div id="content" class="h-screen bg-gray-100 border-l border-gray-300">
                 @yield('content')
+
             </div>
+            <footer class="h-16 w-full bottom-0 text-slate-400 bg-white border-t border-l border-gray-300 flex items-center pl-8 justify-between">
+                <h2>© {{date('Y')}} XYZ Softlutions Pvt. Ltd.</h2>
+                <div class="flex justify-evenly gap-6 pr-6 text-sm ">
+                    <h3 class="hover:text-blue-400"><a href="">Terms</a></h3>
+                    <h3 class="hover:text-blue-400"><a href="">Privacy</a></h3>
+                    <h3 class="hover:text-blue-400"><a href="">Help</a></h3>
+                </div>
+            </footer>
+
         </div>
 
     </div>

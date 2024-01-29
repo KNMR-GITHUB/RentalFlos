@@ -3,8 +3,8 @@
     <div class="flex flex-col p-10">
         <div class="flex justify-between">
             <div>
-                <h1 class="text-2xl font-semibold">Properties</h1>
-                <p class="mt-2 text-gray-400 font-medium">You currently have {{$properties->count()}} properties.</p>
+                <h1 class="text-2xl text-slate-600 font-semibold">Properties</h1>
+                <p class="mt-2 text-slate-400">You currently have {{$properties->count()}} properties.</p>
             </div>
             @auth
                 <div class="flex items-center gap-4">
@@ -15,7 +15,7 @@
 
         </div>
         <div class="flex flex-col justify-evenly bg-white rounded-sm border mt-8 border-gray-300 p-4">
-            <div class="grid grid-flow-col grid-cols-[3fr,3fr,1fr,1fr,2fr] border-b border-gray-300 pb-4">
+            <div class="grid grid-flow-col grid-cols-[3fr,3fr,1fr,1fr,2fr] border-b border-gray-300 pb-4 text-slate-400 font-semibold">
                 <h3>Name</h3>
                 <h3>Address</h3>
                 <h3>Status</h3>
@@ -27,10 +27,10 @@
                         <div class="grid grid-flow-col grid-cols-[3fr,3fr,1fr,1fr,2fr] border-b border-gray-300 pt-4 pb-4">
                             <div class="flex gap-4">
                                 <button class="rounded-full bg-pink-500 pr-2 pl-2 text-white text-sm font-semibold">{{$property->title[0]}}</button>
-                                <h3>{{$property->title}}</h3>
+                                <h3 class="text-slate-600 font-semibold">{{$property->title}}</h3>
                             </div>
 
-                            <h3>{{$property->address_line_1}}, {{$property->address_line_2}}, {{$property->pincode}}</h3>
+                            <h3 class="text-slate-400 font-semibold">{{$property->address_line_1}}, {{$property->address_line_2}}, {{$property->pincode}}</h3>
                             <h3 class="text-green-500">active</h3>
                             <h3 class="text-green-500">vacant</h3>
                             <div>
@@ -45,9 +45,6 @@
                         <p>There are no properties.</p>
                     </div>
                 @endif
-
-
-
         </div>
     </div>
 

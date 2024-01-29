@@ -3,8 +3,8 @@
     <div class="flex flex-col p-10">
         <div class="flex justify-between">
             <div>
-                <h1 class="text-3xl font-semibold">Rent</h1>
-                <p class="mt-2 text-gray-400 font-medium">You have total $ rent collection.</p>
+                <h1 class="text-3xl text-slate-600 font-semibold">Rent</h1>
+                <p class="mt-2 text-slate-400 ">You have total $ rent collection.</p>
             </div>
 
         </div>
