@@ -22,7 +22,7 @@
             <div class="flex flex-row-reverse items-center mr-8">
                 <ul class="flex mt-2 gap-8 items-center h-16">
                     <li>
-                        <div class=" flex items-center justify-center text-purple-900 font-semibold hover:text-green-400"><a href="#home">Home</a></div>
+                        <div class=" {{Route::is('#home') ? 'text-green-400' : ''}} flex items-center justify-center text-purple-900 font-semibold hover:text-green-400"><a href="#home">Home</a></div>
                     </li>
                     <li>
                         <div class=" flex items-center justify-center text-purple-900 font-semibold hover:text-green-400"><a href="#features">Features</a></div>

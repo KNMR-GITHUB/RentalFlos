@@ -12,12 +12,18 @@
 
         </div>
         <div class="bg-white grid rounded-sm p-6 border border-gray-300 mt-8">
-            <form action="{{route('updateUsers',Auth::user()->id)}}" method='post'>
+            <form action="{{route('updateUsers',Auth::user()->id)}}" method='post' enctype="multipart/form-data">
                 @csrf
-                <div class="border-b border-gray-300">
-                    <input class="mb-4" type="text" placeholder="image">
+                @method('put')
+                <div class="flex flex-col justify-center items-center pb-6">
+                    <div class="rounded-full h-36 w-36 flex justify-center items-center bg-white shadow-md mb-6">
+                        <div class="rounded-full w-32 h-32 flex justify-center items-end bg-blue-300" style="background-image:url('/images/user-solid.svg'); background-position:center;">
+
+                        </div>
+                    </div>
+                    <input name="image" class="border border-gray-300" accept="image/*" type="file" placeholder="image">
                 </div>
-                <div class="border-b gap-4 border-gray-300 grid lg:grid-cols-2">
+                <div class="border-b border-t gap-4 border-gray-300 grid lg:grid-cols-2">
                     <div class="mt-2">
                         <label class="block text-gray-700 font-semibold" for="lname">Last Name</label>
                         <input class="rounded-sm p-3 border mt-2 border-gray-300 w-full" type="text" name="lname" value="{{Auth::user()->lname}}">
@@ -46,8 +52,9 @@
                 </div>
             </form>
         </div>
-
     </div>
+
+
 
 
 @endsection

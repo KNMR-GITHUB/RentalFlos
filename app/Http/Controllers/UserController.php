@@ -33,21 +33,25 @@ class UserController extends Controller
             $validated = request()->validate([
                 'fname' => 'required|min:2|max:30',
                 'lname' => 'required|min:2|max:30',
-                'email' => 'required|email'
+                'email' => 'required|email',
+                'image' => 'image'
             ]);
         } else {
             $validated = request()->validate([
                 'fname' => 'required|min:2|max:30',
                 'lname' => 'required|min:2|max:30',
                 'email' => 'required|email|unique:users,email',
+                'image' => 'image'
             ]);
         }
 
-        $user->fname = $validated['fname'];
-        $user->lname = $validated['lname'];
-        $user->email = $validated['email'];
+        if(request()->has('image')){
+            $imagePath = request()->file('image')->store('profile','public');
+            $validated['image'] = $imagePath;
+        }
 
-        $user->save();
+
+        $user->update($validated);
 
         return redirect()->route('settings')->with('success',"profile updated successfully.");
     }

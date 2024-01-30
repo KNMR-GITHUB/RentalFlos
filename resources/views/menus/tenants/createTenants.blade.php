@@ -20,7 +20,7 @@
                 <div class="border-b gap-4 border-gray-300 grid lg:grid-cols-2">
                     <div class="mt-2">
                         <label class="block text-gray-700 font-semibold" for="name">Name</label>
-                        <input class="rounded-sm border pl-2 pt-2 pb-2 mt-2 border-gray-300 w-full" type="text" name="name" placeholder="Enter name">
+                        <input class="rounded-sm border pl-2 pt-2 pb-2 mt-2 border-gray-300 w-full" type="text" name="name" value="{{old('name')}}" placeholder="Enter name">
                         @error('name')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
@@ -28,7 +28,7 @@
 
                     <div class="mt-2">
                         <label class="block text-gray-700 font-semibold" for="contactNo">Contact No.</label>
-                        <input class="rounded-sm pl-2 pt-2 pb-2 border mt-2 border-gray-300 w-full" type="number" name="contactNo" placeholder="Enter contact no.">
+                        <input class="rounded-sm pl-2 pt-2 pb-2 border mt-2 border-gray-300 w-full" type="number" name="contactNo" value="{{old('contactNo')}}"  placeholder="Enter contact no.">
                         @error('contactNo')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
@@ -36,7 +36,7 @@
 
                     <div class="mt-2 mb-6">
                         <label class="block text-gray-700 font-semibold" for="email">Contact Email</label>
-                        <input class="rounded-sm pl-2 pt-2 pb-2 border mt-2 border-gray-300 w-full" type="email" name="email" placeholder="Enter contact email">
+                        <input class="rounded-sm pl-2 pt-2 pb-2 border mt-2 border-gray-300 w-full" type="email" name="email" value="{{old('email')}}" placeholder="Enter contact email">
                         @error('email')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
@@ -47,7 +47,7 @@
                 <div class="border-b gap-4 border-gray-300 grid">
                     <div class="mt-2 mb-6">
                         <label class="block text-gray-700 font-semibold" for="address">Address</label>
-                        <textarea class="rounded-sm pl-2 pt-2 pb-2 border mt-2 border-gray-300 w-full" name="address" rows="2" placeholder="Enter full address"></textarea>
+                        <textarea class="rounded-sm pl-2 pt-2 pb-2 border mt-2 border-gray-300 w-full" name="address" rows="2" placeholder="Enter full address">{{old('address')}}</textarea>
                         @error('address')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror

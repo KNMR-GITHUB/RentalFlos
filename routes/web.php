@@ -29,7 +29,7 @@ Route::get('/forgot', function(){
 
 Route::post('/registration', [UserController::class, 'create_user'])->name("create_user");
 
-Route::post('/updateUsers/{user}', [UserController::class, 'update'])->middleware('auth')->name("updateUsers");
+Route::put('/updateUsers/{user}', [UserController::class, 'update'])->middleware('auth')->name("updateUsers");
 
 // user login
 Route::post('/authenticate', [AuthenticateController::class, 'authenticate'])->name('authenticate');
