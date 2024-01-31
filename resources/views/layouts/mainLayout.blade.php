@@ -53,7 +53,7 @@
                                 <a href="{{route('edit_profile')}}">
                                     <div class="h-10 w-10 rounded-full overflow-hidden">
                                         @if (Auth::user()->image === null)
-                                        <button class="rounded-full bg-pink-500 h-10 pr-2 pl-2 text-white text-sm font-semibold">
+                                        <button class="rounded-full bg-pink-500 h-10 w-10 pr-2 pl-2 text-white text-sm font-semibold">
                                             {{Auth::user()->fname[0]}}{{Auth::user()->lname[0]}}
                                         </button>
                                         @else
