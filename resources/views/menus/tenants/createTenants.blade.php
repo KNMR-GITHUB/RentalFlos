@@ -1,6 +1,6 @@
 @extends('layouts.mainLayout')
 @section('content')
-    <div class="flex flex-col p-10">
+    <div class="flex flex-col p-10 h-full">
         <div class="flex justify-between">
             <div>
                 <h1 class="text-3xl text-gray-600 font-semibold">Tenants</h1>
@@ -12,10 +12,15 @@
 
         </div>
         <div class="bg-white grid rounded-sm p-6 border border-gray-300 mt-8">
-            <form action="{{route('storeTenants')}}" method='post'>
+            <form action="{{route('storeTenants')}}" method='post' enctype="multipart/form-data">
                 @csrf
-                <div class="border-b border-gray-300">
-                    <input class="mb-4" type="text" placeholder="image">
+                <div class="flex flex-col justify-center items-center pb-6">
+                    <div class="rounded-full h-36 w-36 flex justify-center items-center bg-white shadow-md mb-6">
+                        <div class="rounded-full overflow-hidden w-32 h-32 flex justify-center items-end bg-blue-300" style="background-image:url('/images/user-solid.svg'); background-position:center;">
+                            <img class="h-32 w-32" src="/images/user-solid.svg" alt="">
+                        </div>
+                    </div>
+                    <input name="image" value="{{old('image')}}" class="border border-gray-300" accept="image/*" type="file" placeholder="image">
                 </div>
                 <div class="border-b gap-4 border-gray-300 grid lg:grid-cols-2">
                     <div class="mt-2">

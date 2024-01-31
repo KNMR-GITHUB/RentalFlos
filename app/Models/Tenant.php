@@ -15,6 +15,7 @@ class Tenant extends Model
         'address',
         'email',
         'user_id',
+        'image',
     ];
 
     public function user(){

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class tenantsController extends Controller
 {
@@ -25,18 +26,29 @@ class tenantsController extends Controller
         return view('menus.tenants.createTenants');
     }
 
-    public function store(){
+    public function store(Tenant $tenant){
 
         $container = request()->validate([
             'name' => 'required|min:2|max:30',
             'contactNo' => 'required|numeric|min_digits:10|max_digits:10',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:tenants,email',
             'address' => 'required|min:5|max:50'
         ]);
 
         $container['user_id'] = auth()->id();
 
-        $tenant = Tenant::create($container);
+        $newTenant = Tenant::create($container);
+
+        if(request()->has('image')){
+            $imagePath = request()->file('image')->store($newTenant->user_id.'/tenant'.'/'.$newTenant->id,'public');
+            $container['image'] = $imagePath;
+
+            $newTenant->image = $container['image'];
+
+            $newTenant->save();
+        }
+
+
 
         return redirect()->route('tenants');
     }
@@ -62,12 +74,17 @@ class tenantsController extends Controller
             'address' => 'required|min:5|max:50'
         ]);
 
-        $tenant->name = $validated['name'];
-        $tenant->contactNo = $validated['contactNo'];
-        $tenant->email = $validated['email'];
-        $tenant->address = $validated['address'];
+        if(request()->has('image')){
+            $imagePath = request()->file('image')->store($tenant->user_id.'/tenant'.'/'.$tenant->id,'public');
+            $validated['image'] = $imagePath;
 
-        $tenant->save();
+            if($tenant->image !== null){
+                Storage::disk('public')->delete($tenant->image);
+            }
+
+        }
+
+        $tenant->update($validated);
 
         return redirect()->route('showTenants',$tenant->id)->with('success',"tenant updated successfully.");
     }

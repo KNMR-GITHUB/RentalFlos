@@ -1,6 +1,6 @@
 @extends('layouts.mainLayout')
 @section('content')
-    <div class="flex flex-col p-10">
+    <div class="flex flex-col p-10 h-screen">
         <div class="flex justify-between">
             <div>
                 <h1 class="text-3xl text-gray-600 font-semibold">Settings</h1>

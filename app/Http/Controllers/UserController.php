@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -46,8 +46,13 @@ class UserController extends Controller
         }
 
         if(request()->has('image')){
-            $imagePath = request()->file('image')->store('profile','public');
+            $imagePath = request()->file('image')->store($user->id.'/profile','public');
             $validated['image'] = $imagePath;
+
+            if($user->image !== null){
+                Storage::disk('public')->delete($user->image);
+            }
+
         }
 
 
@@ -55,4 +60,5 @@ class UserController extends Controller
 
         return redirect()->route('settings')->with('success',"profile updated successfully.");
     }
+
 }

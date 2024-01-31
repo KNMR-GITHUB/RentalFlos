@@ -24,7 +24,7 @@
             </div>
                 @if ($properties->count() > 0)
                     @foreach ($properties as $property)
-                        <div class="grid grid-flow-col grid-cols-[3fr,3fr,1fr,1fr,2fr] border-b border-gray-300 pt-4 pb-4">
+                        <div class="grid grid-flow-col grid-cols-[3fr,3fr,1fr,1fr,2fr] border-b border-gray-300 pt-4 pb-4 hover:bg-gray-300">
                             <div class="flex gap-4">
                                 <button class="rounded-full bg-pink-500 pr-2 pl-2 text-white text-sm font-semibold">{{$property->title[0]}}</button>
                                 <h3 class="text-slate-600 font-semibold">{{$property->title}}</h3>

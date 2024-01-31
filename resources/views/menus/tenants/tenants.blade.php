@@ -23,10 +23,16 @@
 
                 @if ($tenants->count() > 0)
                     @foreach ($tenants as $tenant)
-                        <div class="p-4 grid grid-flow-col grid-cols-[2fr,2fr,1fr,1fr,1fr,2fr] border-b border-gray-300 pb-4 text-slate-400">
+                        <div class="p-4 grid grid-flow-col grid-cols-[2fr,2fr,1fr,1fr,1fr,2fr] border-b border-gray-300 pb-4 text-slate-400 hover:bg-gray-300">
                             <div class="pl-4  grid grid-flow-col grid-cols-[2fr,2fr,1fr,1fr,1fr,2fr] text-slate-400">
-                                <div class="pr-3">
-                                    <button class="rounded-full bg-red-500 px-4 py-2">{{$tenant->name[0]}}</button>
+                                <div class="h-10 w-10 rounded-full border border-gray-300 overflow-hidden">
+                                    @if ($tenant->image === null)
+                                        <button class="rounded-full bg-pink-500 h-10 w-10 pr-2 pl-2 text-white text-sm font-semibold">
+                                            {{$tenant->name[0]}}
+                                        </button>
+                                    @else
+                                        <img class="object-cover h-10 w-10" src="/storage/{{($tenant->image)}}" alt="">
+                                    @endif
                                 </div>
                                 <div>
                                     <h3>{{$tenant->name}}</h3>

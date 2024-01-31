@@ -17,8 +17,8 @@
                 @method('put')
                 <div class="flex flex-col justify-center items-center pb-6">
                     <div class="rounded-full h-36 w-36 flex justify-center items-center bg-white shadow-md mb-6">
-                        <div class="rounded-full w-32 h-32 flex justify-center items-end bg-blue-300" style="background-image:url('/images/user-solid.svg'); background-position:center;">
-
+                        <div class="rounded-full overflow-hidden w-32 h-32 flex justify-center items-end bg-blue-300" style="background-image:url('/images/user-solid.svg'); background-position:center;">
+                            <img class="h-32 w-32 object-cover" src="storage/{{Auth::user()->image}}" alt="">
                         </div>
                     </div>
                     <input name="image" class="border border-gray-300" accept="image/*" type="file" placeholder="image">
