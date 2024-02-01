@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class propertiesController extends Controller
 {
 
+    // displays all properties for logged in user
     public function display(){
 
         // getting the authenticated user id
@@ -22,10 +23,12 @@ class propertiesController extends Controller
         return view('menus.properties.properties',['properties' => $properties]);
     }
 
+    // route to create property page
     public function create(){
         return view('menus.properties.createProperties');
     }
 
+    // store property data
     public function store(){
 
         $validated = request()->validate([
@@ -44,21 +47,38 @@ class propertiesController extends Controller
 
         $property = Property::create($validated);
 
+        if(request()->has('file')){
+
+            $validated_file = request()->validate([
+                'file' => 'file',
+            ]);
+
+            $filePath = request()->file('file')->store($property->user_id.'/property'.$property->id.'/file'.'/','public');
+            $validated_file['file'] = $filePath;
+
+            $property->file = $validated_file['file'];
+
+            $property->save();
+        }
+
         return redirect()->route('properties');
     }
 
+    // display single property
     public function show(Property $property){
         return view('menus.properties.propertyDetails',[
             'property' => $property
         ]);
     }
 
+    // route to edit page
     public function edit(Property $property){
         return view('menus.properties.propertyEdit',[
             'property' => $property
         ]);
     }
 
+    // update
     public function update(Property $property){
 
         $validated = request()->validate([
@@ -73,17 +93,21 @@ class propertiesController extends Controller
             'description' => 'nullable|max:200',
         ]);
 
-        $property->title = $validated['title'];
-        $property->address_line_1 = $validated['address_line_1'];
-        $property->address_line_2 = $validated['address_line_2'];
-        $property->country = $validated['country'];
-        $property->state = $validated['state'];
-        $property->city = $validated['city'];
-        $property->pincode = $validated['pincode'];
-        $property->rent = $validated['rent'];
-        $property->description = $validated['description'];
+        $property->update($validated);
 
-        $property->save();
+        if(request()->has('file')){
+
+            $validated_file = request()->validate([
+                'file' => 'file',
+            ]);
+
+            $filePath = request()->file('file')->store($property->user_id.'/property'.'/'.$property->id.'/file'.'/','public');
+            $validated_file['file'] = $filePath;
+
+            $property->file = $validated_file['file'];
+
+            $property->save();
+        }
 
         return redirect()->route('showProperties',$property->id)->with('success',"property updated successfully.");
     }

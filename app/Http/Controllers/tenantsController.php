@@ -40,7 +40,7 @@ class tenantsController extends Controller
         $newTenant = Tenant::create($container);
 
         if(request()->has('image')){
-            $imagePath = request()->file('image')->store($newTenant->user_id.'/tenant'.'/'.$newTenant->id,'public');
+            $imagePath = request()->file('image')->store($newTenant->user_id.'/tenant'.'/profile'.'/'.$newTenant->id,'public');
             $container['image'] = $imagePath;
 
             $newTenant->image = $container['image'];

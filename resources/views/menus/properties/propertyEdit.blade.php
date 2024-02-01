@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="bg-white rounded-sm border mt-8 border-gray-300 p-4">
-            <form action="{{route('updateProperties',$property->id)}}" method="post">
+            <form action="{{route('updateProperties',$property->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="grid lg:grid-cols-2 pr-2 pl-2 gap-4 pb-4">
@@ -91,7 +91,7 @@
 
                 <div class="border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
                     <label for="file_upload" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">File Upload</label>
-                        <input type="text" placeholder="Choose file" id="file_upload" name="file_upload" value=" " class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
+                        <input type="file" accept="*" placeholder="Choose file" id="file_upload" name="file" value=" " class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
                         @error('file_upload')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
