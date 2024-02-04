@@ -10,13 +10,20 @@
                 <a href="{{route('properties')}}"><button class="bg-white text-slate-400 rounded-md border border-gray-300 pr-4 pl-4 pt-2 pb-2 hover:bg-gray-600 hover:text-white">← Back</button></a>
             </div>
         </div>
-        <div class="flex flex-col justify-evenly bg-white rounded-sm border mt-8 border-gray-300 p-4">
-            <div class="flex gap-4 border-b border-gray-300 pb-4">
-                <h3>Personal</h3>
-                <h3>Attachments</h3>
-                <h3>Location</h3>
+        <div class="flex flex-col justify-evenly bg-white rounded-sm border mt-8 border-gray-300 px-6 pt-2 pb-6">
+            <div class="flex gap-6 border-b border-gray-300">
+                <div class="py-3 text-blue-600 border-b-2 border-blue-600">
+                    <h3 class=" hover:text-blue-500 h-full"><i class="fa-regular fa-user"></i> Personal</h3>
+                </div>
+                <div class="py-3">
+                    <h3 class=" hover:text-blue-500"><i class="fa-regular fa-file"></i> Attachments</h3>
+                </div>
+                <div class="py-3">
+                    <h3 class=" hover:text-blue-500"><i class="fa-solid fa-map-location-dot"></i> Location</h3>
+                </div>
+
             </div>
-            <div class="grid mt-6 border border-gray-300 md:grid-cols-[1fr,2fr] grid-cols-2">
+            <div id='details' class="grid mt-6 border border-gray-300 md:grid-cols-[1fr,2fr] grid-cols-2">
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property ID</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">{{$property->id}}</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property Name</div>
@@ -35,8 +42,12 @@
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property Tenant</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
-
-
+            </div>
+            <div id="attachments" class="hidden">
+                hello
+            </div>
+            <div id="location" class="hidden">
+                location
             </div>
 
 
