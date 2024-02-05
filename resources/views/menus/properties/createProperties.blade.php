@@ -108,12 +108,9 @@
                         @enderror
                 </div>
 
-                <div class="border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
-                    <label for="map" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">Map</label>
-                        <input type="text" placeholder="map" id="map" name="map" value="{{old('map')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
-                        @error('map')
-                            <span class="text-red-400">{{$message}}</span>
-                        @enderror
+                <div id='justDoIt' class="h-80 border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
+                    <label for="map">Coordinates</label>
+                    <input id='map_coor' type="text" placeholder="map" name="map" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
                 </div>
 
                 <button class="rounded-md bg-purple-800 text-white pt-2 pb-2 pl-5 pr-5">
@@ -123,6 +120,38 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+
+        // map initialization
+        var x_coor;
+        var y_coor;
+        var map = L.map('justDoIt').setView([28.6139, 77.2090], 5);
+
+        // layers
+        var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+
+        // adding marker
+        // you should go to this site for details
+        // https://leafletjs.com/reference.html#marker
+
+        var myMarker = L.marker([28.6139, 77.2090])
+        // myMarker.addTo(map) will add the marker (this is a very basic marker)
+
+        myMarker.addTo(map)
+        function onMapClick(e) {
+            x_coor = e.latlng.lat;
+            y_coor = e.latlng.lng;
+            myMarker.setLatLng(e.latlng)
+        }
+
+        myMarker.addTo(map)
+        map.on('click', onMapClick);
+        osm.addTo(map)
+
+    </script>
 
 @endsection
 

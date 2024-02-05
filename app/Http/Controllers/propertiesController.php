@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class propertiesController extends Controller
 {
@@ -41,6 +42,7 @@ class propertiesController extends Controller
             'pincode' => 'required|min_digits:6|max_digits:6|numeric',
             'rent' => 'required|digits_between:4,10|numeric',
             'description' => 'nullable|max:300',
+            'map' => 'nullable'
         ]);
 
         $validated['user_id'] = auth()->id();
@@ -73,8 +75,10 @@ class propertiesController extends Controller
 
     // route to edit page
     public function edit(Property $property){
-        return view('menus.properties.propertyEdit',[
-            'property' => $property
+
+        return view('menus.properties.propertyEdit')->with([
+            'property' => $property,
+
         ]);
     }
 

@@ -12,14 +12,14 @@
         </div>
         <div class="flex flex-col justify-evenly bg-white rounded-sm border mt-8 border-gray-300 px-6 pt-2 pb-6">
             <div class="flex gap-6 border-b border-gray-300">
-                <div class="py-3 text-blue-600 border-b-2 border-blue-600">
-                    <h3 class=" hover:text-blue-500 h-full"><i class="fa-regular fa-user"></i> Personal</h3>
+                <div id="detailsTitle" class="py-3 text-blue-600 border-b-2 border-blue-600">
+                    <h3 onclick="display('details', 'detailsTitle')" class=" hover:text-blue-500 h-full"><i class="fa-regular fa-user"></i> Personal</h3>
                 </div>
-                <div class="py-3">
-                    <h3 class=" hover:text-blue-500"><i class="fa-regular fa-file"></i> Attachments</h3>
+                <div id="attachmentsTitle" class="py-3">
+                    <h3 onclick="display('attachments', 'attachmentsTitle')" class=" hover:text-blue-500"><i class="fa-regular fa-file"></i> Attachments</h3>
                 </div>
-                <div class="py-3">
-                    <h3 class=" hover:text-blue-500"><i class="fa-solid fa-map-location-dot"></i> Location</h3>
+                <div id="locationTitle" class="py-3">
+                    <h3 onclick="display('location','locationTitle')" class=" hover:text-blue-500"><i class="fa-solid fa-map-location-dot"></i> Location</h3>
                 </div>
 
             </div>
@@ -43,10 +43,10 @@
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property Tenant</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
             </div>
-            <div id="attachments" class="hidden">
+            <div  id="attachments" class="hidden">
                 hello
             </div>
-            <div id="location" class="hidden">
+            <div  id="location" class="hidden">
                 location
             </div>
 
@@ -54,5 +54,26 @@
         </div>
     </div>
 
+    <script>
+
+        var listOfItems = ['details','attachments','location']
+        var listOfTitles = ['detailsTitle', 'attachmentsTitle', 'locationTitle']
+
+        function display(id,titleId){
+            var x = document.getElementById(id);
+            var z = document.getElementById(titleId);
+
+            for(let i=0; i<listOfItems.length; i++){
+                var y = document.getElementById(listOfItems[i]);
+                y.classList.add('hidden');
+                var a = document.getElementById(listOfTitles[i]);
+                a.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600')
+            }
+
+            x.classList.remove('hidden');
+            z.classList.add('text-blue-600', 'border-b-2','border-blue-600')
+
+        }
+    </script>
 
 @endsection
