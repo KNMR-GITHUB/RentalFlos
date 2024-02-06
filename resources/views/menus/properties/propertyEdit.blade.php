@@ -120,15 +120,26 @@
 
         // map initialization
         var coordinates;
-        var map = L.map('justDoIt').setView([{{$property->latitude}}, {{$property->longitude}}], 12);
+        var map;
+        var myMarker;
+        var x_coor,y_coor;
+
+        @if ($property->latitude === null || $property->longitude === null)
+            x_coor = 28.6139;
+            y_coor = 77.2090;
+        @else
+            x_coor = {{ $property->latitude }};
+            y_coor = {{ $property->longitude }};
+        @endif
+
+        map = L.map('justDoIt').setView([x_coor, y_coor], 12);
+        myMarker = L.marker([x_coor, y_coor]);
 
         // layers
         var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         });
 
-        var myMarker = L.marker([{{$property->latitude}}, {{$property->longitude}}])
-        // myMarker.addTo(map) will add the marker (this is a very basic marker)
         myMarker.addTo(map)
 
         map.on('click',function(e) {
