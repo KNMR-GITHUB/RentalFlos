@@ -48,7 +48,7 @@
             <div  id="attachments" class="hidden mt-6">
                 hello
             </div>
-            <div  id="location" class="h-96 mt-6 col-span-2 mb-4 border-t border-gray-300" >
+            <div  id="location" class="hidden h-96 mt-6 col-span-2 mb-4 border-t border-gray-300" >
                 <div id='justDoIt' class="h-96 w-full  ">
 
                 </div>
@@ -99,10 +99,9 @@
 
                     osm.addTo(map);
                 @endif
+
+                count++;
             }
-
-            count++;
-
         }
     </script>
 
