@@ -18,6 +18,9 @@
                 <div id="attachmentsTitle" class="py-3">
                     <h3 onclick="display('attachments', 'attachmentsTitle')" class=" hover:text-blue-500"><i class="fa-regular fa-file"></i> Attachments</h3>
                 </div>
+                <div id="locationTitle" class="py-3">
+                    <h3 onclick="display('location', 'locationTitle')" class=" hover:text-blue-500"><i class="fa-regular fa-file"></i> Location</h3>
+                </div>
 
             </div>
             <div id='details' class="grid mt-6 border border-gray-300 md:grid-cols-[1fr,2fr] grid-cols-2">
@@ -39,26 +42,29 @@
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property Tenant</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
-                {{-- location --}}
-                <div class="pt-10 pb-4 pl-4 text-slate-400 font-bold border col-span-2"><h1>Location</h1></div>
-                <div  id="location" class=" h-96 col-span-2 mb-4 border-t border-gray-300" >
-                    <div id='justDoIt' class="h-96 w-full  ">
 
-                    </div>
-                </div>
 
             </div>
             <div  id="attachments" class="hidden mt-6">
                 hello
             </div>
+            <div  id="location" class="h-96 mt-6 col-span-2 mb-4 border-t border-gray-300" >
+                <div id='justDoIt' class="h-96 w-full  ">
+
+                </div>
+            </div>
 
 
         </div>
     </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <script>
         // page navigation
-        var listOfItems = ['details','attachments']
-        var listOfTitles = ['detailsTitle', 'attachmentsTitle']
+        var listOfItems = ['details','attachments','location']
+        var listOfTitles = ['detailsTitle', 'attachmentsTitle','locationTitle']
+        var count = 0;
 
         function display(id,titleId){
             var x = document.getElementById(id);
@@ -74,30 +80,30 @@
             x.classList.remove('hidden');
             z.classList.add('text-blue-600', 'border-b-2','border-blue-600')
 
+            if (id === 'location' && count===0){
+                @if ($property->latitude === null || $property->longitude === null)
+                    document.getElementById('location').innerHTML = "<h1 class='flex justify-center'>No location set yet.</h1>"
+                    document.getElementById('location').classList.remove('h-96')
+                @else
+                    // map initialization
+                    var map = L.map('justDoIt').setView([{{$property->latitude}}, {{$property->longitude}}], 12);
+
+                    // layers
+                    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    });
+
+                    var myMarker = L.marker([{{$property->latitude}}, {{$property->longitude}}])
+                    // myMarker.addTo(map) will add the marker (this is a very basic marker)
+                    myMarker.addTo(map);
+
+                    osm.addTo(map);
+                @endif
+            }
+
+            count++;
+
         }
-    </script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script>
-
-        @if ($property->latitude === null || $property->longitude === null)
-            document.getElementById('location').innerHTML = "<h1 class='flex justify-center'>No location set yet.</h1>"
-            document.getElementById('location').classList.remove('h-96')
-        @else
-            // map initialization
-            var map = L.map('justDoIt').setView([{{$property->latitude}}, {{$property->longitude}}], 12);
-
-            // layers
-            var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            });
-
-            var myMarker = L.marker([{{$property->latitude}}, {{$property->longitude}}])
-            // myMarker.addTo(map) will add the marker (this is a very basic marker)
-            myMarker.addTo(map);
-
-            osm.addTo(map);
-        @endif
-
     </script>
 
 @endsection
