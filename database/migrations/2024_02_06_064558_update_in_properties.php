@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('properties', function (Blueprint $table) {
-            $table->string('map')->nullable();
+            $table->decimal('latitude',18,15)->nullable();
+            $table->decimal('longitude',18,15)->nullable();
         });
     }
 
@@ -21,8 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('properties', function (Blueprint $table) {
-            $table->string('map')->nullable();
-        });
+
     }
 };

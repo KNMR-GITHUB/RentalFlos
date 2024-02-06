@@ -107,12 +107,16 @@
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
                 </div>
-
-                <div id='justDoIt' class="h-80 border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
-                    <label for="map">Coordinates</label>
-                    <input id='map_coor' type="text" placeholder="map" name="map" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
+                <div class="border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
+                    <label for="latitude">latitude</label>
+                    <input id='latitude' type="number" step="0.0000000000000001" placeholder="latitude" name="latitude" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
+                    <label for="longitude">longitude</label>
+                    <input id='longitude' type="number" step="0.0000000000000001" placeholder="longitude" name="longitude" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
                 </div>
 
+                <div id='justDoIt' class="h-80 border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
+
+                </div>
                 <button class="rounded-md bg-purple-800 text-white pt-2 pb-2 pl-5 pr-5">
                     ✓ Save
                 </button>
@@ -124,8 +128,7 @@
     <script>
 
         // map initialization
-        var x_coor;
-        var y_coor;
+        var coordinates;
         var map = L.map('justDoIt').setView([28.6139, 77.2090], 5);
 
         // layers
@@ -133,23 +136,19 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         });
 
-        // adding marker
-        // you should go to this site for details
-        // https://leafletjs.com/reference.html#marker
-
         var myMarker = L.marker([28.6139, 77.2090])
         // myMarker.addTo(map) will add the marker (this is a very basic marker)
-
         myMarker.addTo(map)
-        function onMapClick(e) {
-            x_coor = e.latlng.lat;
-            y_coor = e.latlng.lng;
+
+        map.on('click',function(e) {
             myMarker.setLatLng(e.latlng)
-        }
 
-        myMarker.addTo(map)
-        map.on('click', onMapClick);
-        osm.addTo(map)
+            document.getElementById('latitude').value = e.latlng.lat;
+            document.getElementById('longitude').value = e.latlng.lng;
+        });
+
+        myMarker.addTo(map);
+        osm.addTo(map);
 
     </script>
 

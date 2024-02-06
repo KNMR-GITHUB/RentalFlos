@@ -43,19 +43,36 @@
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property Tenant</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
             </div>
-            <div  id="attachments" class="hidden">
+            <div  id="attachments" class="hidden mt-6">
                 hello
             </div>
-            <div  id="location" class="hidden">
-                location
+            <div  id="location" class="hidden mt-6 h-96 w-full" >
+                <div id='justDoIt' class="h-96 w-full border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
+
+                </div>
             </div>
 
 
         </div>
     </div>
-
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
 
+        // map initialization
+        var map = L.map('justDoIt').setView([{{$property->latitude}}, {{$property->longitude}}], 12);
+
+        // layers
+        var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+
+        var myMarker = L.marker([{{$property->latitude}}, {{$property->longitude}}])
+        // myMarker.addTo(map) will add the marker (this is a very basic marker)
+        myMarker.addTo(map);
+
+        osm.addTo(map);
+
+        // page navigation
         var listOfItems = ['details','attachments','location']
         var listOfTitles = ['detailsTitle', 'attachmentsTitle', 'locationTitle']
 
@@ -70,6 +87,9 @@
                 a.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600')
             }
 
+            if(id=='location'){
+                map.invalidateSize();
+            }
             x.classList.remove('hidden');
             z.classList.add('text-blue-600', 'border-b-2','border-blue-600')
 

@@ -42,7 +42,8 @@ class propertiesController extends Controller
             'pincode' => 'required|min_digits:6|max_digits:6|numeric',
             'rent' => 'required|digits_between:4,10|numeric',
             'description' => 'nullable|max:300',
-            'map' => 'nullable'
+            'latitude' => 'nullable',
+            'longitude' => 'nullable',
         ]);
 
         $validated['user_id'] = auth()->id();
@@ -95,6 +96,8 @@ class propertiesController extends Controller
             'pincode' => 'required|min_digits:6|numeric',
             'rent' => 'required|digits_between:4,10|numeric',
             'description' => 'nullable|max:200',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable',
         ]);
 
         $property->update($validated);

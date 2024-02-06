@@ -21,7 +21,9 @@ class Property extends Model
         'description',
         'tenants',
         'caretakers',
-        'user_id'
+        'user_id',
+        'latitude',
+        'longitude',
     ];
 
     public function user(){

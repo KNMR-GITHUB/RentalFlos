@@ -98,11 +98,14 @@
                 </div>
 
                 <div class="border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
-                    <label for="map" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">Map</label>
-                        <input type="text" placeholder="map" id="map" name="map" value=" " class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
-                        @error('map')
-                            <span class="text-red-400">{{$message}}</span>
-                        @enderror
+                    <label for="latitude">latitude</label>
+                    <input id='latitude' type="text" placeholder="latitude" name="latitude" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" value={{$property->latitude}}>
+                    <label for="longitude">longitude</label>
+                    <input id='longitude' type="text" placeholder="longitude" name="longitude" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" value={{$property->longitude}}>
+                </div>
+
+                <div id='justDoIt' class="h-80 border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
+
                 </div>
 
                 <button class="rounded-md bg-purple-800 text-white pt-2 pb-2 pl-5 pr-5">
@@ -112,6 +115,33 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+
+        // map initialization
+        var coordinates;
+        var map = L.map('justDoIt').setView([{{$property->latitude}}, {{$property->longitude}}], 12);
+
+        // layers
+        var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+
+        var myMarker = L.marker([{{$property->latitude}}, {{$property->longitude}}])
+        // myMarker.addTo(map) will add the marker (this is a very basic marker)
+        myMarker.addTo(map)
+
+        map.on('click',function(e) {
+            myMarker.setLatLng(e.latlng)
+
+            document.getElementById('latitude').value = e.latlng.lat;
+            document.getElementById('longitude').value = e.latlng.lng;
+        });
+
+        myMarker.addTo(map);
+        osm.addTo(map);
+
+    </script>
 
 @endsection
 
