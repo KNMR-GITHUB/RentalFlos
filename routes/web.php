@@ -31,6 +31,8 @@ Route::post('/registration', [UserController::class, 'create_user'])->name("crea
 
 Route::put('/updateUsers/{user}', [UserController::class, 'update'])->middleware('auth')->name("updateUsers");
 
+Route::put('/changeUserPassword/{user}', [UserController::class, 'changePassword'])->middleware('auth')->name("changeUserPassword");
+
 // user login
 Route::post('/authenticate', [AuthenticateController::class, 'authenticate'])->name('authenticate');
 // user logout

@@ -61,4 +61,18 @@ class UserController extends Controller
         return redirect()->route('settings')->with('success',"profile updated successfully.");
     }
 
+    public function changePassword(User $user){
+        $validated = request()->validate([
+            'old_password' => 'required|min:8',
+            'new_password' => 'required|min:8',
+            'confirm_password' => 'required|min:8|confirmed',
+        ]);
+
+        if(auth()->attempt($validated['old_password'])){
+            $user->password = $validated['new_password'];
+
+            return redirect()->route('settings')->with('success','Password changed successfully');
+        }
+    }
+
 }

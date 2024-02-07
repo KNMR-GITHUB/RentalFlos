@@ -64,7 +64,7 @@
         // page navigation
         var listOfItems = ['details','attachments','location']
         var listOfTitles = ['detailsTitle', 'attachmentsTitle','locationTitle']
-        var count = 0;
+        var mapInitialized = 0;
 
         function display(id,titleId){
             var x = document.getElementById(id);
@@ -80,7 +80,7 @@
             x.classList.remove('hidden');
             z.classList.add('text-blue-600', 'border-b-2','border-blue-600')
 
-            if (id === 'location' && count===0){
+            if (id === 'location' && mapInitialized === 0){
                 @if ($property->latitude === null || $property->longitude === null)
                     document.getElementById('location').innerHTML = "<h1 class='flex justify-center'>No location set yet.</h1>"
                     document.getElementById('location').classList.remove('h-96')
@@ -100,7 +100,7 @@
                     osm.addTo(map);
                 @endif
 
-                count++;
+                mapInitialized = 1;
             }
         }
     </script>
