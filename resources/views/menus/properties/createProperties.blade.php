@@ -16,7 +16,7 @@
                 <div class="grid lg:grid-cols-2 pr-2 pl-2 gap-4 pb-4">
                     <div>
                         <label for="title" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">Title</label>
-                        <input type="text" placeholder="Enter property title/name" id="title" name="title" value="{{old('title')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
+                        <input type="text" placeholder="Enter property title/name" id="title" name="title" value="{{old('title')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" required>
                         @error('title')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
@@ -24,7 +24,7 @@
 
                     <div>
                         <label for="address_line_1" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">Address 1</label>
-                        <input type="text" placeholder="Enter address line-1" id="address_1" name="address_line_1" value="{{old('address_line_1')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
+                        <input type="text" placeholder="Enter address line-1" id="address_1" name="address_line_1" value="{{old('address_line_1')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" required>
                         @error('address_line_1')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
@@ -32,7 +32,7 @@
 
                     <div>
                         <label for="address_line_2" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">Address 2</label>
-                        <input type="text" placeholder="Enter address line-2" id="address_1" name="address_line_2" value="{{old('address_line_2')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
+                        <input type="text" placeholder="Enter address line-2" id="address_1" name="address_line_2" value="{{old('address_line_2')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" required>
                         @error('address_line_2')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
@@ -76,7 +76,7 @@
 
                     <div>
                         <label for="pincode" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">Pin Code</label>
-                        <input type="text" placeholder="Enter pin code" id="pincode" name="pincode" value="{{old('pincode')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
+                        <input type="text" placeholder="Enter pin code" id="pincode" name="pincode" value="{{old('pincode')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" required>
                         @error('pincode')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
@@ -84,7 +84,7 @@
 
                     <div>
                         <label for="rent" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">Rent</label>
-                        <input type="text" placeholder="Enter rent" id="rent" name="rent" value="{{old('rent')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
+                        <input type="text" placeholder="Enter rent" id="rent" name="rent" value="{{old('rent')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" required>
                         @error('rent')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
@@ -94,7 +94,7 @@
 
                 <div class="border-t border-b border-gray-300 mt-4 mb-4 pb-4 pr-2 pl-2">
                     <label for="description" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">Description</label>
-                        <input type="text" placeholder="Enter description" id="description" name="description" value="{{old('description')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
+                        <input type="text" placeholder="Enter description" id="description" name="description" value="{{old('description')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" required>
                         @error('description')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror

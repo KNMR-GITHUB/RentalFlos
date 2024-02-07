@@ -9,7 +9,10 @@ export default {
   theme: {
     extend: {
         height:['group-hover'],
-        width:{'custom_width':'475px'}
+        width:{
+            'custom_width':'475px',
+            'card_width':'300px',
+        }
     },
   },
   plugins: [],

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -64,15 +65,18 @@ class UserController extends Controller
     public function changePassword(User $user){
         $validated = request()->validate([
             'old_password' => 'required|min:8',
-            'new_password' => 'required|min:8',
-            'confirm_password' => 'required|min:8|confirmed',
+            'password' => 'required|min:8|confirmed',
         ]);
 
-        if(auth()->attempt($validated['old_password'])){
-            $user->password = $validated['new_password'];
+        if (Hash::check($validated['old_password'], $user->password)) {
+            $user->password = Hash::make($validated['password']);
+            $user->save();
 
-            return redirect()->route('settings')->with('success','Password changed successfully');
+            return redirect()->route('settings')->with('success', 'Password has been reset successfully.');
+        }else{
+            return redirect()->route('settings')->with('error','old password does not match.');
         }
+
     }
 
 }
