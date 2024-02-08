@@ -8,7 +8,7 @@
 
         </div>
         <div class=" text-gray-400  text-sm gap-6 grid xl:w-1/2 lg:grid-cols-3 md:grid-cols-2 rounded-sm mt-8">
-            <div onclick="togglePopup()" class=" bg-white border border-gray-300 py-8 rounded-sm flex justify-center items-center hover:cursor-pointer">
+            <div onclick="passwordPopup()" class=" bg-white border border-gray-300 py-8 rounded-sm flex justify-center items-center hover:cursor-pointer">
                 <div  class="hover">
                     <img src="images/change_password.png" alt="change password">
                     <p class="flex justify-center mt-4">Change Password</p>
@@ -69,7 +69,7 @@
 
 
                     <div class="flex flex-row gap-6 border-t border-gray-300 pt-4 mt-8 justify-between" >
-                        <button class="bg-red-300 rounded-md text-white px-6 py-2 hover:bg-red-700 hover:text-black" id="reset" type="reset" onclick="togglePopup(); resetForm()">Cancel</button>
+                        <button class="bg-red-300 rounded-md text-white px-6 py-2 hover:bg-red-700 hover:text-black" id="reset" type="reset" onclick="passwordPopup(); resetForm()">Cancel</button>
                         <button class="bg-green-300 rounded-md text-white px-6 py-2 hover:bg-green-700 hover:text-black" type="submit">Submit</button>
                     </div>
 
@@ -82,7 +82,7 @@
     <script>
 
         // displays form
-        function togglePopup() {
+        function passwordPopup() {
             var popup = document.getElementById("popup-container");
             if (popup.classList.contains("hidden")) {
                 popup.classList.remove("hidden");

@@ -12,7 +12,7 @@
 </head>
 <body>
     {{--Main--}}
-    <div class="grid grid-flow-col grid-cols-[1.1fr,6fr]">
+    <div id='main' class="grid grid-flow-col grid-cols-[1.1fr,6fr]">
         {{--Left--}}
         <div id="nav" class="sticky top-0 left-0 h-screen flex flex-col ">
             {{--Logo--}}
@@ -45,7 +45,7 @@
 
         </div>
         {{--Right--}}
-        <div id="body" class="flex flex-col h-full">
+        <div id="body" class="flex relative flex-col h-full">
             {{--Nav Bar--}}
             <div id="user_profile" class="bg-white border-l border-b border-gray-300 m-0 p-0 h-16 sticky top-0">
                 <div class="flex flex-row-reverse">
@@ -63,19 +63,46 @@
                                         @endif
                                     </div>
                                 </a>
-                                <div>
+                                <div id='menu' onclick="toggleProfile()">
                                     <p class="text-xs">OWNER</p>
                                     <p class="text-xs">{{Auth::user()->fname}}</p>
                                 </div>
                                 <div class="text-sm">
                                     Notification
                                 </div>
-                                <form action="{{route('logout')}}" method='post'>
-                                    @csrf
-                                    <button class="bg-red-500 pl-3 pr-3 pt-2 pb-2 rounded-md text-sm text-white hover:bg-red-700 hover:text-gray-300">Logout</button>
-                                </form>
+
 
                         </div>
+
+                        {{-- popup container --}}
+                            <div id="profileCard" class="hidden bg-white shadow-md rounded-lg flex-col border-l border-r border-b border-l-gray-300 border-r-gray-300 border-b-gray-300 border-t-sky-600 border-t-4 absolute top-14 right-24 w-profile_card_width h-profile_card_height">
+                                <div class="flex gap-4  bg-gray-100 px-4 pt-4 pb-2 rounded-t-lg border-b border-gray-300">
+                                    <div class="h-12 w-12 rounded-full overflow-hidden">
+                                        @if (Auth::user()->image === null)
+                                        <button class="rounded-full bg-pink-500 h-12 w-12 pr-2 pl-2 text-white text-sm font-semibold">
+                                            {{Auth::user()->fname[0]}}{{Auth::user()->lname[0]}}
+                                        </button>
+                                        @else
+                                            <img class="object-cover h-12 w-12" src="/storage/{{(Auth::user()->image)}}" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <h2 class="text-lg flex justify-center text-slate-600 font-bold" > {{Auth::user()->email}} </h2>
+                                        <h3>{{Auth::user()->fname}} {{Auth::user()->lname}}</h3>
+                                    </div>
+                                </div>
+
+                                <div class="p-4">
+                                    <a href="{{route('edit_profile')}}"><h3 class="text-slate-700 font-medium hover:text-blue-600"><i class="fa-regular fa-user mr-3 w-4"></i>View Profile</h3></a>
+                                </div>
+                                <div class="border-t border-slate-400 p-4">
+                                        <form action="{{route('logout')}}" method="post">
+                                            @csrf
+
+                                            <button type="submit"><h3 class="text-slate-700 font-medium hover:text-blue-600"><i class="fa-solid fa-right-from-bracket w-4 mr-3"></i>Sign Out</h3></button>
+                                        </form>
+                                </div>
+                            </div>
                     @endauth
 
                 </div>
@@ -100,6 +127,28 @@
         </div>
 
     </div>
+
+
+    <script>
+        function toggleProfile(event) {
+            var popup = document.getElementById("profileCard");
+            if (popup.classList.contains("hidden")) {
+                popup.classList.remove("hidden");
+            } else {
+                popup.classList.add("hidden");
+
+
+            }
+
+        }
+
+        document.addEventListener('click',function(event){
+            var clickedOn = document.getElementById('profileCard').contains(event.target) || document.getElementById('menu').contains(event.target);
+                    if(!clickedOn){
+                        document.getElementById('profileCard').classList.add('hidden');
+                    }
+        });
+    </script>
 
 </body>
 </html>
