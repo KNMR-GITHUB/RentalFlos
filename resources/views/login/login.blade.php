@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RentalFLO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     @vite('resources/css/app.css')
 </head>
@@ -58,7 +59,8 @@
                         </div>
                         <div class="flex flex-col items-center justify-center ">
                             <p class="mt-2 mb-2">--OR--</p>
-                            <button class="rounded-md bg-red-500 p-3 text-white"> Sign in with Google</button>
+
+                            <button class="rounded-md bg-red-500 p-3 text-white"><i class="fa-brands fa-google-plus-g text-lg px-2"></i> Sign in with Google</button>
                             <h3 class="mt-2">New on our platform? <span class="font-semibold"><a href="{{route("register")}}">Create an account</a></span></h3>
                         </div>
                     </div>

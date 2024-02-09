@@ -64,8 +64,8 @@
                                     </div>
                                 </a>
                                 <div id='menu' onclick="toggleProfile()">
-                                    <p class="text-xs">OWNER</p>
-                                    <p class="text-xs">{{Auth::user()->fname}}</p>
+                                    <p class="text-xs text-blue-400 font-semibold">OWNER</p>
+                                    <p class="font-md">{{Auth::user()->fname}} </p>
                                 </div>
                                 <div class="text-sm">
                                     Notification

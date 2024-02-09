@@ -49,7 +49,7 @@
 
         </div>
 
-        <div id="home" class=" mt-16 grid grid-flow-col grid-cols-2">
+        <div id="home" class=" grid grid-flow-col grid-cols-2">
             <div class=" mt-56 pl-4 pr-2 mb-80 pb-5">
                 <h4 class="text-lg">Property Management System</h4> <br>
                     <h1 class="text-purple-900 text-6xl font-semibold">Manage your Rental properties</h1> <br>
