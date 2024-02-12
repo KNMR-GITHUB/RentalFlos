@@ -66,16 +66,7 @@
                                                 <i class="fa-solid fa-user-pen px-3"></i> Edit
                                             </a>
                                         </li>
-                                        <li class="border-t border-gray-300">
-                                            <a href="" class="block py-2 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white text-sm">
-                                                <i class="fa-solid fa-people-roof px-3"></i> Assign care taker
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="block py-2 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white text-sm">
-                                                <i class="fa-solid fa-person-circle-plus px-3"></i> Assign Tenant
-                                            </a>
-                                        </li>
+
                                         <li class="border-t border-gray-300">
                                             <a href="" class="block py-2 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white text-sm">
                                                 <i class="fa-solid fa-ban px-3"></i> Deactivate

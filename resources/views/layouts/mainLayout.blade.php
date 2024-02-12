@@ -87,19 +87,19 @@
                                         @endif
                                     </div>
                                     <div class="flex flex-col">
-                                        <h2 class="text-lg flex justify-center text-slate-600 font-bold" > {{Auth::user()->email}} </h2>
+                                        <h2 class=" flex justify-center text-slate-600 font-bold" > {{Auth::user()->email}} </h2>
                                         <h3>{{Auth::user()->fname}} {{Auth::user()->lname}}</h3>
                                     </div>
                                 </div>
 
                                 <div class="p-4">
-                                    <a href="{{route('edit_profile')}}"><h3 class="text-slate-700 font-medium hover:text-blue-600"><i class="fa-regular fa-user mr-3 w-4"></i>View Profile</h3></a>
+                                    <a href="{{route('edit_profile')}}"><h3 class="text-slate-700 text-sm hover:text-blue-600"><i class="fa-regular fa-user mr-3 w-4"></i>View Profile</h3></a>
                                 </div>
                                 <div class="border-t border-slate-400 p-4">
                                         <form action="{{route('logout')}}" method="post">
                                             @csrf
 
-                                            <button type="submit"><h3 class="text-slate-700 font-medium hover:text-blue-600"><i class="fa-solid fa-right-from-bracket w-4 mr-3"></i>Sign Out</h3></button>
+                                            <button type="submit"><h3 class="text-slate-700 text-sm hover:text-blue-600"><i class="fa-solid fa-right-from-bracket w-4 mr-3"></i>Sign Out</h3></button>
                                         </form>
                                 </div>
                             </div>
