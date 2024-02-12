@@ -23,7 +23,7 @@
                 </div>
 
             </div>
-            <div id='details' class="grid mt-6 border border-gray-300 md:grid-cols-[1fr,2fr] grid-cols-2">
+            <div id='details' class="grid mt-6 border border-gray-300 md:grid-cols-[1fr,2fr] lg:grid-cols-[3fr,1fr] grid-cols-2">
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property ID</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">{{$property->id}}</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property Name</div>
@@ -48,8 +48,8 @@
             <div  id="attachments" class="hidden mt-6">
                 hello
             </div>
-            <div  id="location" class="hidden h-96 mt-6 col-span-2 mb-4 border-t border-gray-300" >
-                <div id='justDoIt' class="h-96 w-full  ">
+            <div  id="location" class="hidden h-[500px] mt-6 col-span-2 mb-4 border-t border-gray-300" >
+                <div id='justDoIt' class="h-[500px] w-full  ">
 
                 </div>
             </div>
@@ -83,10 +83,10 @@
             if (id === 'location' && mapInitialized === 0){
                 @if ($property->latitude === null || $property->longitude === null)
                     document.getElementById('location').innerHTML = "<h1 class='flex justify-center'>No location set yet.</h1>"
-                    document.getElementById('location').classList.remove('h-96')
+                    document.getElementById('location').classList.remove('h-[500px]')
                 @else
                     // map initialization
-                    var map = L.map('justDoIt').setView([{{$property->latitude}}, {{$property->longitude}}], 12);
+                    var map = L.map('justDoIt').setView([{{$property->latitude}}, {{$property->longitude}}], 15);
 
                     // layers
                     var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

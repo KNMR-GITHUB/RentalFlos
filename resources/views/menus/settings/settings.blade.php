@@ -34,7 +34,7 @@
     </div>
 
     {{-- popup for changing password--}}
-    <div id="popup-container" class="shadow-md shadow-black fixed inset-0 bg-zinc-600 bg-opacity-45 flex items-center justify-center hidden" onclick="togglePopup(e)">
+    <div id="popup-container" class="shadow-md shadow-black fixed inset-0 bg-zinc-600 bg-opacity-45 flex items-center justify-center hidden">
         <div id="form" class="bg-white pt-6 px-6 pb-4 rounded-lg w-card_width">
             <h2 class="text-lg flex justify-center text-slate-600 font-bold" > Change Password</h2>
             <div class="mt-4 pt-4 border-t border-gray-300">

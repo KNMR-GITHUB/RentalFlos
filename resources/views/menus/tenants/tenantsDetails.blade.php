@@ -15,7 +15,7 @@
                 <h3>Personal</h3>
                 <h3>Attachments</h3>
             </div>
-            <div class="grid mt-6 border border-gray-300 md:grid-cols-[1fr,2fr] grid-cols-2">
+            <div class="grid mt-6 border border-gray-300 md:grid-cols-[1fr,1fr] grid-cols-2">
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Tenant ID</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">{{$tenant->id}}</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Tenant Name</div>
