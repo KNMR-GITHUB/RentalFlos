@@ -25,15 +25,31 @@
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Email address</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">{{$tenant->email}}</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Rent</div>
-                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
+                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">
+                    @if ($tenant->rent !== null)
+                        {{$tenant->rent}}
+                    @endif
+                </div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Address</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">{{$tenant->address}}</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property</div>
-                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
+                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">
+                    @if ($tenant->propertyName !== null)
+                        {{$tenant->propertyName}}
+                    @endif
+                </div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Start Date</div>
-                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
+                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">
+                    @if ($tenant->startDate !== null)
+                        {{$tenant->startDate}}
+                    @endif
+                </div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">End Date</div>
-                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
+                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">
+                    @if ($tenant->endDate !== null)
+                        {{$tenant->endDate}}
+                    @endif
+                </div>
 
 
             </div>

@@ -63,6 +63,10 @@ Route::get('/editProperties/{property}', [propertiesController::class,'edit'])->
 
 Route::put('/updateProperties/{property}', [propertiesController::class,'update'])->middleware('auth')->name("updateProperties");
 
+Route::put('/assignTenant/{property}',[propertiesController::class,'assignTenant'])->middleware('auth')->name("assignTenant");
+
+Route::put('/unAssignTenant/{property}',[propertiesController::class,'unAssignTenant'])->middleware('auth')->name("unAssignTenant");
+
 
 // tenants routes
 

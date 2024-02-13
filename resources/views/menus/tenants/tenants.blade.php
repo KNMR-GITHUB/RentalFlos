@@ -43,9 +43,17 @@
                                 </div>
                             </div>
 
-                            <h3></h3>
+                            <h3>
+                                @if ($tenant->propertyName !== null)
+                                    {{$tenant->propertyName}}
+                                @endif
+                            </h3>
                             <h3>{{$tenant->contactNo}}</h3>
-                            <h3></h3>
+                            <h3>
+                                @if ($tenant->rent !== null)
+                                    {{$tenant->rent}}
+                                @endif
+                            </h3>
                             <h3></h3>
 
                             <div class="basis-1/12 flex items-center justify-end pr-10">

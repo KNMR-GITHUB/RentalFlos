@@ -41,7 +41,11 @@
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Care Taker Email</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property Tenant</div>
-                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
+                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">
+                    @if ($property->tenantName !== null)
+                        {{$property->tenantName}}
+                    @endif
+                </div>
 
 
             </div>
