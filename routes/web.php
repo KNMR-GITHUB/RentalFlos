@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticateController;
+use App\Http\Controllers\CaretakerController;
 use App\Http\Controllers\propertiesController;
 use App\Http\Controllers\tenantsController;
 use Illuminate\Routing\Controllers\Middleware;
@@ -66,6 +67,17 @@ Route::put('/updateProperties/{property}', [propertiesController::class,'update'
 Route::put('/assignTenant/{property}',[propertiesController::class,'assignTenant'])->middleware('auth')->name("assignTenant");
 
 Route::put('/unAssignTenant/{property}',[propertiesController::class,'unAssignTenant'])->middleware('auth')->name("unAssignTenant");
+
+
+// careTaker routes
+
+Route::post('/createAndStore/{property}',[CaretakerController::class,'createAndStore'])->middleware('auth')->name("createAndStore");
+
+Route::post('/assignCareTaker/{property}',[CaretakerController::class,'assignCareTaker'])->middleware('auth')->name("assignCareTaker");
+
+Route::put('/unAssignCaretaker/{property}',[CaretakerController::class,'unAssignCaretaker'])->middleware('auth')->name("unAssignCaretaker");
+
+Route::put('/assignCaretakerFromList/{property}',[CaretakerController::class,'assignCaretakerFromList'])->middleware('auth')->name("assignCaretakerFromList");
 
 
 // tenants routes

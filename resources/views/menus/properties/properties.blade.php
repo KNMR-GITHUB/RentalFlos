@@ -61,8 +61,23 @@
                                             </a>
                                         </li>
 
-                                        <li class="border-t border-gray-300 block py-2 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white text-sm" onclick="toggleAssignCaretaker()">
-                                                <i class="fa-solid fa-people-roof px-3"></i> Assign care taker
+                                        <li class="border-t border-gray-300 block py-2 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white text-sm" >
+                                            @if ($property->careTakerId === null)
+                                                <div class='w-full' onclick="toggleAssignCaretaker({{$property->id}})">
+                                                    <i class="fa-solid fa-people-roof px-3"></i> Assign care taker
+                                                </div>
+                                            @else
+                                                <div class="w-full">
+                                                    <form action="{{route('unAssignCaretaker',$property->id)}}" method="post">
+                                                        @csrf
+                                                        @method('put')
+                                                        <button class="" type="submit">
+                                                            <i class="fa-solid fa-users-slash px-3"></i> Unassign Caretaker
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            @endif
+
                                         </li>
 
                                         <li class="block py-2 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white text-sm " >
@@ -142,23 +157,24 @@
                                 <div class="border-b border-gray-300 mb-4">
                                     <h1 class="text-2xl text-slate-700 p-6 font-semibold">Care Taker</h1>
                                 </div>
-                                <form  action="" class="text-slate-600 font-medium">
-
+                                <form id="addNew" action="{{route("createAndStore",$property->id)}}" method="post" class="text-slate-600 font-medium">
+                                    @csrf
                                     <!-- add new caretaker -->
-                                    <div id="addNew" class="grid grid-cols-2">
+                                    <div  class="grid grid-cols-2">
+
                                         <div class="p-2">
-                                            <label for="tenantName">First Name</label>
-                                            <input type="text" name="firstName" id="firstName" class="block w-full mt-2 mb-2 rounded-md text-sm border p-2 border-gray-300" placeholder="Enter Caretaker First Name">
+                                            <label for="fname">First Name</label>
+                                            <input type="text" name="fname" id="fname" class="block w-full mt-2 mb-2 rounded-md text-sm border p-2 border-gray-300" placeholder="Enter Caretaker First Name">
                                         </div>
 
                                         <div class="p-2">
-                                            <label for="rent">Last Name</label>
-                                            <input type="text" name="lastName" id="lastName" class="block w-full mt-2 mb-2 rounded-md border text-sm p-2 border-gray-300" placeholder="Enter Caretaker Last Name">
+                                            <label for="lname">Last Name</label>
+                                            <input type="text" name="lname" id="lname" class="block w-full mt-2 mb-2 rounded-md border text-sm p-2 border-gray-300" placeholder="Enter Caretaker Last Name">
                                         </div>
 
                                         <div class="p-2">
-                                            <label for="caretakerEmail">Email</label>
-                                            <input type="email" name="cartakerEmail" id="caretakerEmail" class="block w-full mt-2 mb-2 rounded-md text-sm p-2 border border-gray-300" placeholder="Enter Caretaker Email">
+                                            <label for="email">Email</label>
+                                            <input type="email" name="email" id="email" class="block w-full mt-2 mb-2 rounded-md text-sm p-2 border border-gray-300" placeholder="Enter Caretaker Email">
                                         </div>
 
                                         <div class="p-2">
@@ -167,26 +183,45 @@
                                         </div>
                                     </div>
 
+                                    <div class="flex justify-end gap-2 pr-2 mt-4 border-t border-gray-300 pt-3">
+                                        <div id="toggleList" class="rounded-md  bg-green-400 px-3 py-2 hover:bg-green-700 text-white" onclick="toggleShowList(this)">≣ Show List</div>
+                                        <button type="submit" class="rounded-md  bg-purple-400 px-3 py-2 hover:bg-purple-700 text-white">✓ Save</button>
+                                        <button id="cancel3" type="reset"  class="rounded-md  bg-red-400 px-3 py-2 hover:bg-red-700 text-white" onclick="toggleAssignCaretaker(); resetAssignCaretakerForm();">✕ Cancel</button>
+                                    </div>
+
+                                </form>
+
+
+                                <form id="showList" action="{{route('assignCaretakerFromList',$property->id)}}" method="post" class="text-slate-600 font-medium hidden">
+                                    @csrf
+                                    @method('put')
                                     <!-- Show list of caretakers -->
-                                    <div id="showList" action="" class="text-slate-600 font-medium hidden">
+                                    <div class="text-slate-600 font-medium">
                                         <div class="p-2">
                                             <h1>Select One Caretaker</h1>
                                         </div>
                                         <div class="p-2">
-                                            <input type="radio" id="html" name="language" value="HTML">
-                                            <label for="html">HTML</label><br>
+                                            @if ($caretakers->isempty())
+                                                <h1>No Caretakers Created Yet.</h1>
+                                            @else
+                                                @foreach ($caretakers as $caretaker)
+                                                    <input type="radio" id='caretaker_{{$caretaker->id}}' name='selected_caretaker' value={{$caretaker->id}}>
+                                                    <label for='caretaker_{{$caretaker->id}}'>{{$caretaker->fname.' '.$caretaker->lname}}</label><br>
+                                                @endforeach
+                                            @endif
+
+
                                         </div>
 
                                     </div>
 
                                     <div class="flex justify-end gap-2 pr-2 mt-4 border-t border-gray-300 pt-3">
-                                        <div id="toggleList" class="rounded-md  bg-green-400 px-3 py-2 hover:bg-green-700 text-white" onclick="toggleShowList(this)">≣ Show List</div>
-                                        <button id="save" class="rounded-md  bg-purple-400 px-3 py-2 hover:bg-purple-700 text-white">✓ Save</button>
-                                        <button id="cancel2" type="reset"  class="rounded-md  bg-red-400 px-3 py-2 hover:bg-red-700 text-white" onclick="toggleAssignCaretaker(); resetAssignCaretakerForm();">✕ Cancel</button>
+                                        <div id="addNew" class="rounded-md  bg-green-400 px-3 py-2 hover:bg-green-700 text-white" onclick="toggleShowList(this)">+ Add New</div>
+                                        <button class="rounded-md  bg-purple-400 px-3 py-2 hover:bg-purple-700 text-white">✓ Save</button>
+                                        <button id="cancel4" type="reset"  class="rounded-md  bg-red-400 px-3 py-2 hover:bg-red-700 text-white" onclick="toggleAssignCaretaker(); resetAssignCaretakerForm();">✕ Cancel</button>
                                     </div>
 
                                 </form>
-
 
                             </div>
                         </div>
@@ -219,13 +254,9 @@
             if(eleId === "toggleList"){
                 document.getElementById("addNew").classList.add("hidden");
                 document.getElementById("showList").classList.remove("hidden");
-                document.getElementById(eleId).innerHTML = "+ Add New"
-                document.getElementById(eleId).id = "toggle"
-            }else if(eleId === "toggle") {
+            }else if(eleId === "addNew") {
                 document.getElementById("addNew").classList.remove("hidden");
                 document.getElementById("showList").classList.add("hidden");
-                document.getElementById(eleId).innerHTML = "≣ Show List"
-                document.getElementById(eleId).id = "toggleList"
             }
         }
 
@@ -262,8 +293,14 @@
 
         }
 
-        function toggleAssignCaretaker(){
+        function toggleAssignCaretaker(id){
             var popup = document.getElementById("assignCaretakerPopup");
+
+            var form1 = document.getElementById('addNew');
+            form1.action = "{{ route('createAndStore', $property->id) }}".replace({{$property->id}}, id);
+
+            var form2 = document.getElementById('showList');
+            form2.action = "{{ route('assignCaretakerFromList', $property->id) }}".replace({{$property->id}}, id);
 
             if (popup.classList.contains("hidden")) {
                 popup.classList.remove("hidden");

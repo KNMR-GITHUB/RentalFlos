@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Caretaker;
 use App\Models\Property;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class propertiesController extends Controller
@@ -12,8 +15,8 @@ class propertiesController extends Controller
 
     // displays all properties for logged in user
     public function display(){
-
         // getting the authenticated user id
+        $caretakers = Caretaker::all();
         $container = auth()->user();
         $tenants = Tenant::where('propertyName','=',null)->get();
         // calling data with auth user
@@ -22,7 +25,7 @@ class propertiesController extends Controller
         // alternatively, not using the above
         // $properties = Property::where('user_id','=',auth()->id());
 
-        return view('menus.properties.properties',['properties' => $properties, 'tenants' => $tenants]);
+        return view('menus.properties.properties',['properties' => $properties, 'tenants' => $tenants, 'caretakers' => $caretakers]);
     }
 
     // route to create property page
@@ -70,8 +73,15 @@ class propertiesController extends Controller
 
     // display single property
     public function show(Property $property){
+        $caretaker=null;
+
+        if ($property->careTakerId !== null) {
+            $caretaker = Caretaker::find($property->careTakerId);
+        }
+
         return view('menus.properties.propertyDetails',[
-            'property' => $property
+            'property' => $property,
+            'caretaker' => $caretaker,
         ]);
     }
 

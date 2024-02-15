@@ -35,11 +35,23 @@
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Rent</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">{{$property->rent}}</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Care Taker Name</div>
-                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
+                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">
+                    @if ($caretaker !== null)
+                        {{$caretaker->fname}} {{$caretaker->lname}}
+                    @endif
+                </div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Care Taker Contact</div>
-                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
+                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">
+                    @if ($caretaker !== null)
+                        {{$caretaker->contactNo}}
+                    @endif
+                </div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Care Taker Email</div>
-                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300"></div>
+                <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">
+                    @if ($caretaker !== null)
+                        {{$caretaker->email}}
+                    @endif
+                </div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property Tenant</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">
                     @if ($property->tenantName !== null)
