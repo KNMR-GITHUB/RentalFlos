@@ -166,4 +166,11 @@ class propertiesController extends Controller
 
         return redirect()->route('properties')->with('success',"tenant unAssigned from property.");
     }
+
+    public function toggleStatus(Property $property){
+        $property->status = request()->status;
+        $property->save();
+
+        return redirect()->route('properties')->with("success",'property activated successfully');
+    }
 }

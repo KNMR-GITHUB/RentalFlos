@@ -88,4 +88,11 @@ class tenantsController extends Controller
 
         return redirect()->route('showTenants',$tenant->id)->with('success',"tenant updated successfully.");
     }
+
+    public function toggleStatus(Tenant $tenant){
+        $tenant->status = request()->status;
+        $tenant->save();
+
+        return redirect()->route('tenants')->with("success",'property activated successfully');
+    }
 }

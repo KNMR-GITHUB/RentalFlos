@@ -31,7 +31,13 @@
                             </div>
 
                             <h3 class="text-slate-400 font-semibold">{{$property->address_line_1}}, {{$property->address_line_2}}, {{$property->pincode}}</h3>
-                            <h3 class="text-green-500">active</h3>
+                            <div>
+                                @if ($property->status === 'Active')
+                                    <h3 class="text-green-400">{{$property->status}}</h3>
+                                @else
+                                    <h3 class="text-red-400">{{$property->status}}</h3>
+                                @endif
+                            </div>
 
                             @if ($property->tenantName !== null)
                                 <h3>{{$property->tenantName}}</h3>
@@ -101,8 +107,25 @@
 
                                         </li>
 
-                                        <li id="statusIn" onclick="toggleStatus(this)"  class="border-t border-gray-300 block py-2 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white text-sm" >
-                                                <i class="fa-regular fa-circle-xmark px-3"></i> Inactive
+                                        <li class="border-t border-gray-300 block py-2 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white text-sm">
+                                            <div class="w-full">
+                                                <form action="{{ route('propertyStatus', $property->id) }}" method="post">
+                                                    @csrf
+                                                    @method('put')
+                                                    <input id="statusInput" type="hidden" name="status" value="active">
+                                                    @if ($property->status === 'Inactive')
+                                                        <input type="hidden" name="status" value="Active">
+                                                        <button class="" type="submit">
+                                                            <i class="fa-regular fa-circle-xmark px-3"></i> {{$property->status}}
+                                                        </button>
+                                                    @else
+                                                        <input type="hidden" name="status" value="Inactive">
+                                                        <button class="" type="submit">
+                                                            <i class="fa-regular fa-circle-check px-3"></i> {{$property->status}}
+                                                        </button>
+                                                    @endif
+                                                </form>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
@@ -237,16 +260,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <script>
-
-        function toggleStatus(stat){
-            if(stat.id === "statusIn"){
-                stat.innerHTML = '<i class="fa-regular fa-circle-check px-3"></i> Active'
-                stat.id = "statusAc"
-            }else {
-                stat.innerHTML = '<i class="fa-regular fa-circle-xmark px-3"></i> Inactive'
-                stat.id = "statusIn"
-            }
-        }
 
         function toggleShowList(ele){
             var eleId = ele.id;

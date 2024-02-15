@@ -68,6 +68,8 @@ Route::put('/assignTenant/{property}',[propertiesController::class,'assignTenant
 
 Route::put('/unAssignTenant/{property}',[propertiesController::class,'unAssignTenant'])->middleware('auth')->name("unAssignTenant");
 
+Route::put('/propertyStatus/{property}',[propertiesController::class,'toggleStatus'])->middleware('auth')->name('propertyStatus');
+
 
 // careTaker routes
 
@@ -93,6 +95,8 @@ Route::get('/viewTenants/{tenant}', [tenantsController::class,'show'])->middlewa
 Route::get('/editTenants/{tenant}', [tenantsController::class,'edit'])->middleware('auth')->name("editTenants");
 
 Route::put('/updateTenants/{tenant}', [tenantsController::class,'update'])->middleware('auth')->name("updateTenants");
+
+Route::put('/tenantStatus/{tenant}',[tenantsController::class,'toggleStatus'])->middleware('auth')->name('tenantStatus');
 
 // rent routes
 

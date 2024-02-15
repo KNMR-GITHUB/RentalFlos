@@ -54,7 +54,14 @@
                                     {{$tenant->rent}}
                                 @endif
                             </h3>
-                            <h3></h3>
+                            <div>
+                                @if ($tenant->status === 'Active')
+                                    <h3 class="text-green-400">{{$tenant->status}}</h3>
+                                @else
+                                    <h3 class="text-red-400"> {{$tenant->status}}</h3>
+                                @endif
+
+                            </div>
 
                             <div class="basis-1/12 flex items-center justify-end pr-10">
                                 <button id="dropdownMenuIconButton" data-dropdown-toggle="{{$tenant->id}}" class="group-hover:bg-gray-100 inline-flex justify-center items-center p-2 text-sm font-medium text-center w-10 h-10 text-gray-900 bg-white rounded-full  focus:outline-none" type="button">
@@ -76,9 +83,24 @@
                                         </li>
 
                                         <li class="border-t border-gray-300">
-                                            <a href="" class="block py-2 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white text-sm">
-                                                <i class="fa-solid fa-ban px-3"></i> Deactivate
-                                            </a>
+                                            <div class="w-full">
+                                                <form action="{{ route('tenantStatus', $tenant->id) }}" method="post">
+                                                    @csrf
+                                                    @method('put')
+                                                    <input id="statusInput" type="hidden" name="status" value="active">
+                                                    @if ($tenant->status === 'Inactive')
+                                                        <input type="hidden" name="status" value="Active">
+                                                        <button class="" type="submit">
+                                                            <i class="fa-regular fa-circle-xmark px-3"></i> {{$tenant->status}}
+                                                        </button>
+                                                    @else
+                                                        <input type="hidden" name="status" value="Inactive">
+                                                        <button class="" type="submit">
+                                                            <i class="fa-regular fa-circle-check px-3"></i> {{$tenant->status}}
+                                                        </button>
+                                                    @endif
+                                                </form>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
