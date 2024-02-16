@@ -16,8 +16,6 @@ class CaretakerController extends Controller
             'email' => 'required'
         ]);
 
-        $validated['propertyId'] = $property->id;
-
         $newCaretaker = Caretaker::create($validated);
 
         $property->careTakerId = $newCaretaker->id;
@@ -29,7 +27,6 @@ class CaretakerController extends Controller
 
     public function assignCaretakerFromList(Property $property){
         $caretaker = Caretaker::where("id",'=',request()->selected_caretaker)->first();
-        $caretaker->propertyId = $property->id;
         $property->careTakerId = $caretaker->id;
 
         $caretaker->save();
@@ -41,7 +38,6 @@ class CaretakerController extends Controller
     public function unAssignCaretaker(Property $property){
         $caretaker = Caretaker::where("id",'=',$property->careTakerId)->first();
 
-        $caretaker->propertyId = null;
         $property->careTakerId = null;
 
         $caretaker->save();
