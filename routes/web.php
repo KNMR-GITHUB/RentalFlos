@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\CaretakerController;
+use App\Http\Controllers\expenseController;
+use App\Http\Controllers\expenselistController;
 use App\Http\Controllers\propertiesController;
 use App\Http\Controllers\tenantsController;
 use Illuminate\Routing\Controllers\Middleware;
@@ -106,9 +108,13 @@ Route::get('/rent', function(){
 
 // expenses routes
 
-Route::get('/expenses', function(){
-    return view('menus.expenses.expenses');
-})->middleware('auth')->name("expenses");
+Route::get('/expenses', [expenseController::class,'display'])->middleware('auth')->name("expenses");
+
+Route::get('/createExpenses', [expenseController::class,'create'])->middleware('auth')->name("createExpenses");
+
+Route::post('/storeExpenses', [expenseController::class,'store'])->middleware('auth')->name("storeExpenses");
+
+Route::post('/expenseList', [expenselistController::class,'store'])->middleware('auth')->name("expenseList");
 
 // settings routes
 

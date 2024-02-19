@@ -34,7 +34,7 @@
                     <li class="{{(Route::is('rent')) ? 'text-blue-500':''}} font-semibold  mb-5 hover:text-blue-500">
                         <a href="{{route('rent')}}"><i class="fa-solid fa-indian-rupee-sign mr-4 ml-1"></i> Rent</a>
                     </li>
-                    <li class="{{(Route::is('expenses')) ? 'text-blue-500':''}}  font-semibold  mb-5 hover:text-blue-500">
+                    <li class="{{(Route::is('expenses')) || (Route::is('createExpenses')) ? 'text-blue-500':''}}  font-semibold  mb-5 hover:text-blue-500">
                         <a href="{{route('expenses')}}"><i class="fa-solid fa-coins mr-3"></i> Expenses</a>
                     </li>
                     <li class="{{(Route::is('settings')) || (Route::is('edit_profile')) ? 'text-blue-500':''}} font-semibold  mb-5 hover:text-blue-500">
