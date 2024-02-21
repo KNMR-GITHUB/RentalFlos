@@ -36,7 +36,7 @@
                     <div class="mt-2 mb-6">
                         <div class ="flex justify-between  text-gray-700 font-semibold">
                             <label for="expenseType">Expense Type</label>
-                            <div class="rounded-sm text-white bg-purple-600 px-2 text-sm hover:cursor-pointer" onclick="addExpenseType()">+ Add New Expense</div>
+                            <div class="rounded-md flex items-center text-white bg-purple-600 px-2 text-sm hover:cursor-pointer" onclick="addExpenseType()">+ Add New Expense Type</div>
                         </div>
 
                         <select name="expenseType" class="rounded-sm p-2 border mt-2 border-gray-300 w-full">
@@ -97,7 +97,11 @@
         {{-- popup to add expense type --}}
         <div id="popup-container" class="shadow-md shadow-black fixed inset-0 bg-zinc-600 bg-opacity-45 flex items-center justify-center hidden">
             <div id="form" class="bg-white pt-6 px-6 pb-4 rounded-lg w-card_width">
-                <h2 class="text-lg flex text-slate-600 font-bold" > New Expense Type</h2>
+                <div class="flex justify-between">
+                    <h2 class="text-lg flex text-slate-600 font-bold" > New Expense Type</h2>
+                    <div onclick="addExpenseType()" class="flex items-center hover:cursor-pointer"><i class="fa-solid fa-xmark fa-xl"></i></div>
+                </div>
+
                 <div class="mt-4 pt-4 border-t border-gray-300">
                     <form action="{{route('expenseList')}}" method="post" >
                         @csrf
