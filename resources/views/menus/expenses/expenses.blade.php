@@ -20,7 +20,12 @@
                             <option class="text-gray-300 p-2" value="" selected>Select a Property</option>
                                 @if ($property->count()>0)
                                     @foreach ($property as $prop)
-                                        <option class="text-gray-700" {{$values->propertyName===$prop->title?'selected':''}} value="{{$prop->title}}">{{$prop->title}}</option>
+                                        @if ($values!==null)
+                                            <option class="text-gray-700" {{$values->propertyName===$prop->title?'selected':''}} value="{{$prop->title}}">{{$prop->title}}</option>
+                                        @else
+                                            <option class="text-gray-700" value="{{$prop->title}}">{{$prop->title}}</option>
+                                        @endif
+
                                     @endforeach
                                 @else
                                     <h1>There are no properties added yet.</h1>
