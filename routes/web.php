@@ -116,6 +116,12 @@ Route::post('/storeExpenses', [expenseController::class,'store'])->middleware('a
 
 Route::post('/expenseList', [expenselistController::class,'store'])->middleware('auth')->name("expenseList");
 
+Route::post('/filterExpense',[expenseController::class,'filter'])->middleware('auth')->name("filterExpense");
+
+Route::get('/expenseDetails/{expense}', [expenseController::class,'show'])->middleware('auth')->name("expenseDetails");
+
+Route::get('/editExpenses/{expense}', [expenseController::class,'edit'])->middleware('auth')->name("editExpenses");
+
 // settings routes
 
 Route::get('/settings', function(){
