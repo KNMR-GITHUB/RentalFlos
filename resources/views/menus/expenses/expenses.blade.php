@@ -31,7 +31,7 @@
                         <input class="rounded-sm p-2 border mt-2 border-gray-300 w-full" type="date" name="fromDate" value="{{old('fromDate')}}" placeholder="From Date">
                     </div>
                     <div class="mt-2 mb-6">
-                        <input class="rounded-sm p-2 border mt-2 border-gray-300 w-full" type="date" name="toDate" value="{{old('toDate')}}" placeholder="">
+                        <input class="rounded-sm p-2 border mt-2 border-gray-300 w-full" type="date" name="toDate" value="{{old('toDate')}}" placeholder="To Date">
                     </div>
                     <div class="mt-2 mb-6">
                         <button class="rounded-md p-2 text-white border mt-2 bg-green-500" type="submit" name="submit">Submit</button>
