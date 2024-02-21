@@ -12,9 +12,9 @@
 
         </div>
         <div class="bg-white grid rounded-sm p-6 border border-gray-300 mt-8">
-            <form action="" method='post' enctype="multipart/form-data">
+            <form action="{{route('updateExpenses',$expense->id)}}" method='post' enctype="multipart/form-data">
                 @csrf
-
+                @method('put')
                 <div class="border-b gap-4 border-gray-300 grid lg:grid-cols-2">
 
                     <div class="mt-2 mb-6">
@@ -23,7 +23,7 @@
                             <option class="text-gray-300 p-2" value="" selected>Select a Property</option>
                                 @if ($property->count()>0)
                                     @foreach ($property as $prop)
-                                        <option class="text-gray-700" value="{{$prop->id}}">{{$prop->title}}</option>
+                                        <option class="text-gray-700" {{ $expense->propertyName === $prop->title ? 'selected' : '' }} value="{{$prop->id}}">{{$prop->title}}</option>
                                     @endforeach
                                 @else
                                     <h1>There are no properties added yet.</h1>
@@ -40,10 +40,10 @@
                         </div>
 
                         <select name="expenseType" class="rounded-sm p-2 border mt-2 border-gray-300 w-full">
-                            <option class="text-gray-300" value="" selected>Select an expense</option>
+                            <option class="text-gray-300" value="">Select an expense</option>
                             @if ($expenseType->count()>0)
-                                @foreach ($expenseType as $expense)
-                                    <option class="text-gray-700" value="{{$expense->name}}">{{$expense->name}}</option>
+                                @foreach ($expenseType as $type)
+                                    <option class="text-gray-700" {{ $expense->expenseType === $type->name ? 'selected' : '' }} value="{{$type->name}}">{{$type->name}}</option>
                                 @endforeach
                             @else
                                 <h1>There are no expenses added yet.</h1>
@@ -73,7 +73,7 @@
                 <div class="border-b gap-4 border-gray-300 grid">
                     <div class="mt-2 mb-6">
                         <label class="block text-gray-700 font-semibold" for="expenseDescription">Expense Description</label>
-                        <textarea class="rounded-sm p-2 border mt-2 border-gray-300 w-full" name="expenseDescription" rows="2" placeholder="Enter Expense Description">{{$expense->expenseDescription}}</textarea>
+                        <textarea class="rounded-sm p-2 border mt-2 border-gray-300 w-full" name="expenseDescription" rows="2" >{{$expense->expenseDescription}}</textarea>
                         @error('expenseDescrip')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror

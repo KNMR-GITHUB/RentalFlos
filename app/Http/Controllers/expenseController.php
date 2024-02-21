@@ -11,14 +11,16 @@ use Illuminate\Support\Facades\Redis;
 class expenseController extends Controller
 {
     public function display(){
-        $property = Property::all();
-        $sum = Expense::all()->sum('amount');
+        $property = Property::where('user_id',auth()->id())->get();
+        $propertylist = $property->pluck('title')->toArray();
+        $sum = Expense::whereIn('propertyName', $propertylist)->sum('amount');
         $data = null;
-        return view('menus.expenses.expenses',['property' => $property, 'sum' => $sum, 'data' => $data]);
+        $values = null;
+        return view('menus.expenses.expenses',['property' => $property, 'sum' => $sum, 'data' => $data , 'values' => $values]);
     }
 
     public function create(){
-        $property = Property::all();
+        $property = Property::where('user_id',auth()->id())->get();
         $expenseType = expenselist::all();
 
         return view('menus.expenses.createExpenses',['property' => $property, 'expenseType' => $expenseType]);
@@ -49,12 +51,17 @@ class expenseController extends Controller
     public function filter(){
         $fromDate = date('Y-m-d', strtotime(request('fromDate')));
         $toDate = date('Y-m-d', strtotime(request('toDate')));
-        $property = Property::all();
-        $sum = Expense::all()->sum('amount');
-        $data = Expense::where('propertyName','=',request('propertyName'))->whereBetween('date',[$fromDate,$toDate])->get();
-        $currentRoute = request()->route()->getName();
 
-        return view('menus.expenses.expenses',['data' => $data,'property' => $property, 'route' => $currentRoute, 'sum' => $sum]);
+        $property = Property::where('user_id',auth()->id())->get();
+
+        $propertylist = $property->pluck('title')->toArray();
+        $sum = Expense::whereIn('propertyName', $propertylist)->sum('amount');
+
+        $data = Expense::where('propertyName','=',request('propertyName'))->whereBetween('date',[$fromDate,$toDate])->get();
+
+        $values = request();
+
+        return view('menus.expenses.expenses',['data' => $data,'property' => $property, 'values' => $values, 'sum' => $sum, 'list' => $propertylist]);
     }
 
     public function show(Expense $expense){
@@ -62,9 +69,17 @@ class expenseController extends Controller
     }
 
     public function edit(Expense $expense){
-        $property = Property::all();
+        $property = Property::where('user_id',auth()->id())->get();
         $expenseType = expenselist::all();
         return view('menus.expenses.editExpenses',['expense' => $expense, 'property' => $property, 'expenseType' => $expenseType]);
+    }
+
+    public function update(Expense $expense){
+        $updatedValues = request()->validate([]);
+
+        $expense->update($updatedValues);
+
+        return redirect()->route('expenseDetails',$expense->id);
     }
 
 

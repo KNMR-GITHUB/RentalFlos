@@ -122,6 +122,8 @@ Route::get('/expenseDetails/{expense}', [expenseController::class,'show'])->midd
 
 Route::get('/editExpenses/{expense}', [expenseController::class,'edit'])->middleware('auth')->name("editExpenses");
 
+Route::put('/updateExpenses/{expense}', [expenseController::class,'update'])->middleware('auth')->name("updateExpenses");
+
 // settings routes
 
 Route::get('/settings', function(){

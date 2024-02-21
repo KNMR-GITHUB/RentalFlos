@@ -20,7 +20,7 @@
                             <option class="text-gray-300 p-2" value="" selected>Select a Property</option>
                                 @if ($property->count()>0)
                                     @foreach ($property as $prop)
-                                        <option class="text-gray-700" value="{{$prop->title}}">{{$prop->title}}</option>
+                                        <option class="text-gray-700" {{$values->propertyName===$prop->title?'selected':''}} value="{{$prop->title}}">{{$prop->title}}</option>
                                     @endforeach
                                 @else
                                     <h1>There are no properties added yet.</h1>
@@ -29,10 +29,10 @@
                         </select>
                     </div>
                     <div class="mt-2 mb-6">
-                        <input id="fromDate" class="rounded-sm p-2 border mt-2 border-gray-300 w-full" type="date" name="fromDate" value="{{old('fromDate')}}" placeholder="From Date">
+                        <input id="fromDate" class="rounded-sm p-2 border mt-2 border-gray-300 w-full" type="date" name="fromDate" value="{{$values!==null? $values->fromDate: ''}}" placeholder="From Date">
                     </div>
                     <div class="mt-2 mb-6">
-                        <input id="toDate" class="rounded-sm p-2 border mt-2 border-gray-300 w-full" type="date" name="toDate" value="{{old('toDate')}}" placeholder="To Date">
+                        <input id="toDate" class="rounded-sm p-2 border mt-2 border-gray-300 w-full" type="date" name="toDate" value="{{$values!==null? $values->toDate: ''}}" placeholder="To Date">
                     </div>
                     <div class="mt-2 mb-6">
                         <button class="rounded-md font-semibold py-3 px-6 text-white border mt-2 bg-purple-500 hover:bg-purple-800"  type="submit" name="submit">✓ Apply</button>
