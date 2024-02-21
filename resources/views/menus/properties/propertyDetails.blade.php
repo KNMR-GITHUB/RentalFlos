@@ -23,7 +23,7 @@
                 </div>
 
             </div>
-            <div id='details' class="grid mt-6 border border-gray-300 md:grid-cols-[1fr,2fr] lg:grid-cols-[1fr,3fr] grid-cols-2">
+            <div id='details' class="grid mt-6 border border-gray-300 md:grid-cols-[1fr,2fr] lg:grid-cols-[3fr,1fr] grid-cols-2">
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property ID</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">{{$property->id}}</div>
                 <div class="flex items-center p-3 text-slate-400 font-bold border border-gray-300">Property Name</div>
