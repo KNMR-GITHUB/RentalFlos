@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\CaretakerController;
+use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\expenseController;
 use App\Http\Controllers\expenselistController;
 use App\Http\Controllers\propertiesController;
@@ -47,9 +48,7 @@ Route::post('/logout', [AuthenticateController::class, 'logout'])->name('logout'
 
 // dashboard routes
 
-Route::get('/dashboard', function(){
-    return view('menus.dashboard.dashboard');
-})->middleware('auth')->name("dashboard");
+Route::get('/dashboard',[dashboardController::class, 'display'])->middleware('auth')->name("dashboard");
 
 
 // properties routes

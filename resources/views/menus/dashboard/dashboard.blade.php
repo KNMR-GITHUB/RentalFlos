@@ -16,16 +16,22 @@
             </div>
         </div>
         <div class="flex flex-col justify-evenly rounded-sm mt-8">
-            <div class="grid gap-y-2">
-                <div class="grid text-lg text-gray-800 font-semibold gap-2 lg:grid-cols-2">
-                    <div class="bg-white rounded-sm h-12 p-3 text-slate-600 font-semibold">
+            <div class="grid gap-y-4">
+                <div class="grid text-lg gap-4 h-36 text-gray-800 font-semibold lg:grid-cols-2">
+                    <div class="bg-white rounded-sm p-4 h-36  text-slate-600 font-semibold">
                         <h1>Active Properties</h1>
+                        <div class="h-20 flex">
+                            <div class="p-4 text-3xl flex justify-center items-center">{{$property->count()}}</div>
+                            <canvas id="propActive" class="h-100% pt-4"></canvas>
+                        </div>
                     </div>
-                    <div class="bg-white rounded-sm h-12 p-3 text-slate-600 font-semibold">
+                    <div class="bg-white rounded-sm h-36 p-3 text-slate-600 font-semibold">
                         <h1>Active Tenants</h1>
+
+                        <canvas id="chart2"></canvas>
                     </div>
                 </div>
-                <div class="grid gap-2  lg:grid-cols-[2fr,1fr]">
+                <div class="grid gap-4  lg:grid-cols-[2fr,1fr] hidden">
                     <div class="bg-white  rounded-sm h-12 p-3 text-slate-600 font-semibold">
                         <h3>Rent Collection 2024 (₹ 0)</h3>
                     </div>
@@ -43,5 +49,54 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script>
+            const prop = document.getElementById('propActive');
+
+            var propChart = new Chart(prop, {
+                type: 'bar',
+                data: {
+                labels: ['Active'],
+                datasets: [{
+                    label: 'Active',
+                    data: [{{$property->count()}}],
+                    backgroundColor: [
+                        'rgba(250, 247, 200, 0.3)',
+                    ],
+                    borderColor: [
+                        'rgba(237, 227, 74)',
+                    ],
+                    borderWidth: 1
+                }]
+                },
+                options: {
+                    plugins: {
+                            legend: {
+                            display: false,
+                        }
+                    },
+
+
+                    scales: {
+                        x: {
+                            display: false,
+                            grid: {
+                                drawBorder: false
+                            }
+                        },
+
+                        y: {
+                            display: false,
+                            beginAtZero: true,
+                            grid: {
+                                drawOnChartArea: false,
+                                drawBorder: false
+                            }
+
+                        }
+                    }
+                }
+            });
+    </script>
 
 @endsection
