@@ -10,7 +10,7 @@ class dashboardController extends Controller
 {
     public function display(){
         $property = Property::where('user_id',auth()->id())->where('status','Active')->get();
-        $tenant = Tenant::where('user_id',auth()->id())->where('status','Active')->get();
+        $tenant = Tenant::where('user_id',auth()->id())->where('status','Active')->orderBy('created_at','desc')->get();
 
         return view('menus.dashboard.dashboard',['property' => $property, 'tenant' => $tenant]);
     }

@@ -259,6 +259,8 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+
+    @if ($properties->count() > 0)
     <script>
 
         function toggleShowList(ele){
@@ -345,7 +347,10 @@
             document.getElementById("caretakerEmail").innerHTML = '';
             document.getElementById("contactNo").innerHTML = '';
         }
+
     </script>
+    @endif
+
 @endsection
 
 
