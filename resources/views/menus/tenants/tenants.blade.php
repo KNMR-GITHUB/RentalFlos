@@ -83,7 +83,7 @@
                                         </li>
 
                                         <li class="border-t border-gray-300">
-                                            <div class="w-full">
+                                            <div class="w-full mt-2">
                                                 <form action="{{ route('tenantStatus', $tenant->id) }}" method="post">
                                                     @csrf
                                                     @method('put')

@@ -36,16 +36,32 @@
                 <div class="grid gap-4  lg:grid-cols-[2fr,1fr]">
                     <div class="bg-white  rounded-sm border border-gray-300 p-3 text-slate-600 font-semibold">
                         <h3>Rent Collection 2024 (₹ 0)</h3>
+                        <div class="flex justify-center p-2">
+                            <canvas id="rentG"></canvas>
+                        </div>
                     </div>
-                    <div class="bg-white  rounded-sm border border-gray-300 p-3 text-slate-600 font-semibold">
-                        <h3>Rent Collection (0)</h3>
+                    <div id="doughnut" class="bg-white flex flex-col rounded-sm border border-gray-300 text-slate-600 font-semibold">
+                        <h3 class="p-4">Rent Collection (0)</h3>
+                        <div class="flex justify-center">
+                            <canvas id="circle" class=" p-4"></canvas>
+                        </div>
                     </div>
-                    <div class="bg-white rounded-sm border border-gray-300 p-3 text-slate-600 font-semibold">
-                        <h1>Last Five Transaction</h1>
+                    <div class="flex flex-col bg-white rounded-sm border border-gray-300 text-slate-600 font-semibold">
+                        <h1 class="py-4 pl-6 border-b border-gray-300">Last Five Transaction</h1>
+                        <div class="flex flex-col">
+                            <div class="grid grid-cols-[2fr,1fr,1fr,2fr,1fr,1fr] border-b border-gray-300">
+                                <div class="pl-6 py-3 text-sm"><h3>Property</h3></div>
+                                <div class="pl-3 py-3 text-sm"><h3>Tenant</h3></div>
+                                <div class="pl-3 py-3 text-sm"><h3>Date</h3></div>
+                                <div class="pl-3 py-3 text-sm"><h3>Amount</h3></div>
+                                <div class="pl-3 py-3 text-sm"><h3>Status</h3></div>
+                                <div class="pl-3"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="grid bg-white rounded-sm border border-gray-300 p-3 text-slate-600 font-semibold">
-                        <div class="flex justify-between">
-                            <h1>New Tenants</h1>
+                    <div class="grid bg-white rounded-sm border border-gray-300 text-slate-600 font-semibold">
+                        <div class="flex justify-between border-b border-gray-300 p-4">
+                            <h1 class="">New Tenants</h1>
                             <h3 class="text-blue-700"><a href="{{route('tenants')}}">View All</a></h3>
                         </div>
                         <div class='flex flex-col'>
@@ -110,6 +126,9 @@
     <script>
             const prop = document.getElementById('propActive');
             const tent = document.getElementById('tentActive');
+            const nut = document.getElementById('circle');
+            const rent = document.getElementById('rentG');
+
             var propChart = new Chart(prop, {
                 type: 'bar',
                 data: {
@@ -199,6 +218,40 @@
                     }
                 }
             });
+
+            var nutChart = new Chart(nut, {
+                type: 'doughnut',
+                data: {
+                    labels: ["Collected", "Not Collected",],
+                    datasets: [{
+
+                    data: [20, 40,],
+                    backgroundColor: ['rgba(120, 21, 138, 0.6)', 'rgba(17, 96, 242, 0.7)',],
+                    hoverOffset: 5
+                    }],
+                },
+                options: {
+                    responsive: false,
+                },
+            });
+            const DATA_COUNT = 12;
+            const randomData = Array.from({ length: DATA_COUNT }, () => Math.floor(Math.random() * 10000000));
+            var rentChart = new Chart(rent, {
+                type: 'line',
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    datasets: [{
+                        label: 'Rent',
+                        data: randomData,
+                        borderColor: 'red',
+                        backgroundColor: 'red',
+                    }],
+                },
+                optiosn: {
+                    responsive: false,
+                },
+            });
+
     </script>
 
 @endsection
