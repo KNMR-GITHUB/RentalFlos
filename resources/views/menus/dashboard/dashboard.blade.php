@@ -36,14 +36,14 @@
                 <div class="grid gap-4  lg:grid-cols-[2fr,1fr]">
                     <div class="bg-white  rounded-sm border border-gray-300 p-3 text-slate-600 font-semibold">
                         <h3>Rent Collection 2024 (₹ 0)</h3>
-                        <div class="flex justify-center p-2">
-                            <canvas id="rentG"></canvas>
+                        <div class="p-6 h-96 flex">
+                            <canvas id="rentG" class="p-4"></canvas>
                         </div>
                     </div>
                     <div id="doughnut" class="bg-white flex flex-col rounded-sm border border-gray-300 text-slate-600 font-semibold">
                         <h3 class="p-4">Rent Collection (0)</h3>
-                        <div class="flex justify-center">
-                            <canvas id="circle" class=" p-4"></canvas>
+                        <div class="flex">
+                            <canvas id="circle" class="p-4"></canvas>
                         </div>
                     </div>
                     <div class="flex flex-col bg-white rounded-sm border border-gray-300 text-slate-600 font-semibold">
@@ -247,8 +247,9 @@
                         backgroundColor: 'red',
                     }],
                 },
-                optiosn: {
-                    responsive: false,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
                 },
             });
 

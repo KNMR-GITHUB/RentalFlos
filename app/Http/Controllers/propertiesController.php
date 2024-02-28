@@ -113,19 +113,23 @@ class propertiesController extends Controller
 
         $property->update($validated);
 
-        if(request()->has('file')){
-
-            $validated_file = request()->validate([
-                'file' => 'file',
+        if(request()->hasFile('files')) {
+            $validated_files = request()->validate([
+                'files.*' => 'file',
             ]);
 
-            $filePath = request()->file('file')->store($property->user_id.'/property'.'/'.$property->id.'/file'.'/','public');
-            $validated_file['file'] = $filePath;
+            $filePaths = [];
 
-            $property->file = $validated_file['file'];
+            foreach(request()->file('files') as $file) {
+                $filePath = $file->store($property->user_id.'/property'.$property->id.'/file','public');
+                $filePaths[] = $filePath;
+            }
 
+            // Serialize the array of file paths before saving to the database
+            $property->file_paths = serialize($filePaths);
             $property->save();
         }
+
 
         return redirect()->route('showProperties',$property->id)->with('success',"property updated successfully.");
     }

@@ -68,8 +68,10 @@
                 </div>
                 <div class="border-b gap-4 border-gray-300 grid">
                     <div class="mt-2 mb-6">
-                        <label class="block text-gray-700 font-semibold">File Upload (ID Proof - Aadhaar card, Pan card, Voter Id, License...)</label>
-                        <input type="file">
+                        <label class="block text-gray-700 font-semibold" for="file-input">File Upload (ID Proof - Aadhaar card, Pan card, Voter Id, License...)</label>
+                        <input type="file" id="file-input" name="file-input" multiple>
+                        <br>
+                        <div class="flex" id="file-previews"></div>
 
                     </div>
                 </div>
@@ -80,6 +82,39 @@
         </div>
 
     </div>
+
+    <script>
+        // Get reference to file input and file preview container
+        const fileInput = document.getElementById('file-input');
+        const filePreviews = document.getElementById('file-previews');
+
+        // Add event listener for file input change
+        fileInput.addEventListener('change', function() {
+            const files = this.files; // Get the selected files
+
+            if (files.length > 0) {
+                // Loop through each selected file
+                Array.from(files).forEach(file => {
+                    const reader = new FileReader(); // Initialize FileReader object
+
+                    // Set up FileReader onload event
+                    reader.onload = function(e) {
+                        // Create image element for preview
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.maxWidth = '200px';
+                        img.style.maxHeight = '200px';
+
+                        // Append image to file preview container
+                        filePreviews.appendChild(img);
+                    };
+
+                    // Read the file as a data URL (base64 encoding)
+                    reader.readAsDataURL(file);
+                });
+            }
+        });
+    </script>
 
 
 @endsection
