@@ -62,7 +62,18 @@
 
             </div>
             <div  id="attachments" class="hidden mt-6">
-                hello
+                @php
+                    $unserializeThis = $property->file;
+                    $list = unserialize($unserializeThis);
+                @endphp
+                <div class="flex flex-cols gap-4">
+                    @for ($i = 0; $i < count($list); $i++)
+
+                            <div class="flex">
+                                <img src="/storage/{{$list[$i]}}" class= "h-[150px] w-[150px]" alt="">
+                            </div>
+                    @endfor
+                </div>
             </div>
             <div  id="location" class="hidden h-[500px] mt-6 col-span-2 mb-4 border-t border-gray-300" >
                 <div id='justDoIt' class="h-[500px] w-full  ">

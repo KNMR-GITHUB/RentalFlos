@@ -91,7 +91,7 @@
 
                 <div class="border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
                     <label for="file_upload" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">File Upload</label>
-                    <input type="file" accept="*" placeholder="Choose file" id="file_upload" name="file" value="" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" multiple>
+                    <input type="file" accept="*" placeholder="Choose file" id="file_upload" name="files[]" value="" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" multiple>
                     <br>
                     <div class="flex" id="file-previews"></div>
                         @error('file_upload')

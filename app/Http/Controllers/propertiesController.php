@@ -121,12 +121,13 @@ class propertiesController extends Controller
             $filePaths = [];
 
             foreach(request()->file('files') as $file) {
-                $filePath = $file->store($property->user_id.'/property'.$property->id.'/file','public');
+                $filePath = $file->store($property->user_id.'/property'.'/'.$property->id.'/file','public');
+                $file = $filePath;
                 $filePaths[] = $filePath;
             }
 
             // Serialize the array of file paths before saving to the database
-            $property->file_paths = serialize($filePaths);
+            $property->file = serialize($filePaths);
             $property->save();
         }
 

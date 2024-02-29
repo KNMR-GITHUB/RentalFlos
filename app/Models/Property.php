@@ -21,6 +21,7 @@ class Property extends Model
         'description',
         'tenants',
         'caretakers',
+        'file',
         'user_id',
         'latitude',
         'longitude',
