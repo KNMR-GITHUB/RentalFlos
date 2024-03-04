@@ -68,10 +68,24 @@
                 @endphp
                 <div class="flex flex-cols gap-4">
                     @for ($i = 0; $i < count($list); $i++)
+                        @php
+                            $path = $list[$i];
+                            $info = pathInfo($path);
+                            $extension = $info['extension'];
+                            $hello = str_replace('/','_',$path)
+                        @endphp
+
+                        @if ($extension == 'xlsx')
 
                             <div class="flex">
-                                <img src="/storage/{{$list[$i]}}" class= "h-[150px] w-[150px]" alt="">
+                                <a href="{{route('showFile',$hello)}}"><img src="/images/xlsx_icon.png" class= "h-[150px] w-[150px]" alt=""></a>
                             </div>
+                        @else
+                            <div class="flex">
+                                <a href="{{route('showFile',$property->title)}}"><img src="/storage/{{$list[$i]}}" class= "h-[150px] w-[150px]" alt=""></a>
+                            </div>
+                        @endif
+
                     @endfor
                 </div>
             </div>

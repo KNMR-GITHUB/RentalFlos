@@ -5,6 +5,7 @@ use App\Http\Controllers\CaretakerController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\expenseController;
 use App\Http\Controllers\expenselistController;
+use App\Http\Controllers\fileDisplay;
 use App\Http\Controllers\propertiesController;
 use App\Http\Controllers\tenantsController;
 use Illuminate\Routing\Controllers\Middleware;
@@ -133,6 +134,8 @@ Route::get('/edit_profile', function(){
     return view('menus.settings.edit_profile');
 })->middleware('auth')->name("edit_profile");
 
+// files route
 
+Route::get('/showFile/{id}', [fileDisplay::class,'hello'])->middleware('auth')->name('showFile');
 
 

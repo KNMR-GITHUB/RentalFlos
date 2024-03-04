@@ -94,6 +94,7 @@
                                 <div class="p-4">
                                     <a href="{{route('edit_profile')}}"><h3 class="text-slate-700 text-sm hover:text-blue-600"><i class="fa-regular fa-user mr-3 w-4"></i>View Profile</h3></a>
                                 </div>
+
                                 <div class="border-t border-slate-400 p-4">
                                         <form action="{{route('logout')}}" method="post">
                                             @csrf
