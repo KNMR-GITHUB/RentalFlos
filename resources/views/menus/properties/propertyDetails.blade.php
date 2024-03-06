@@ -79,7 +79,7 @@
                             @if ($extension == 'xlsx')
 
                                 <div class="flex">
-                                    <img src="/images/xlsx_icon.png"  class= "h-[150px] w-[150px]" alt="">
+                                    <a href="{{route('downloadPropertiesFile',['propId' => $property->id, 'fileName' => $hello])}}"><img src="/images/xlsx_icon.png"  class= "h-[150px] w-[150px]" alt=""></a>
                                 </div>
                             @else
                                 <div class="flex">
@@ -167,10 +167,12 @@
             }
         }
 
+
         // Get all images with the 'image' class
         var images = document.querySelectorAll('.image');
 
-        // Get the modal
+        if (images !== null) {
+            // Get the modal
         var modal = document.getElementById("myModal");
 
         // Get the modal content (image)
@@ -264,6 +266,8 @@
             modalImg.src = images[currentIndex].src;
             updatePreviewImages();
         }
+        }
+
 
     </script>
 

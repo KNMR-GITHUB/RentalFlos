@@ -136,6 +136,6 @@ Route::get('/edit_profile', function(){
 
 // files route
 
-Route::get('/showFile/{id}', [fileDisplay::class,'hello'])->middleware('auth')->name('showFile');
+Route::get('/downloadPropertiesFile/{propId}/{fileName}', [fileDisplay::class,'downloadFile'])->middleware('auth')->name('downloadPropertiesFile');
 
 

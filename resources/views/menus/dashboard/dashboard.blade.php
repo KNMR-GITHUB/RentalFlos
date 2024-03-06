@@ -33,20 +33,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid gap-4  lg:grid-cols-[2fr,1fr]">
-                    <div class="bg-white  rounded-sm border border-gray-300 p-3 text-slate-600 font-semibold">
+                <div class="grid gap-4 grid-cols-1 lg:grid-cols-3">
+                    <div class="bg-white rounded-sm border col-span-2 border-gray-300 p-3 text-slate-600 font-semibold">
                         <h3>Rent Collection 2024 (₹ 0)</h3>
-                        <div class="p-6 h-96 flex">
-                            <canvas id="rentG" class="p-4"></canvas>
+                        <div class="p-6 w-full h-full">
+                            <canvas id="rentG" class="p-4 w-full"></canvas>
                         </div>
                     </div>
-                    <div id="doughnut" class="bg-white flex flex-col rounded-sm border border-gray-300 text-slate-600 font-semibold">
+                    <div id="doughnut" class="bg-white flex flex-col rounded-sm w-full border border-gray-300 text-slate-600 font-semibold">
                         <h3 class="p-4">Rent Collection (0)</h3>
-                        <div class="flex">
-                            <canvas id="circle" class="p-4"></canvas>
+                        <div class="w-full h-full">
+                            <canvas id="circle" class="p-4 w-full"></canvas>
                         </div>
                     </div>
-                    <div class="flex flex-col bg-white rounded-sm border border-gray-300 text-slate-600 font-semibold">
+                    <div class="flex flex-col bg-white rounded-sm border col-span-2 border-gray-300 text-slate-600 font-semibold">
                         <h1 class="py-4 pl-6 border-b border-gray-300">Last Five Transaction</h1>
                         <div class="flex flex-col">
                             <div class="grid grid-cols-[2fr,1fr,1fr,2fr,1fr,1fr] border-b border-gray-300">
@@ -231,7 +231,7 @@
                     }],
                 },
                 options: {
-                    responsive: false,
+
                 },
             });
             const DATA_COUNT = 12;
@@ -248,8 +248,7 @@
                     }],
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
+
                 },
             });
 

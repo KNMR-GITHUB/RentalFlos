@@ -4,7 +4,7 @@
         <div class="flex justify-between">
             <div>
                 <h1 class="text-3xl font-semibold">Expenses</h1>
-                <p class="mt-2 text-gray-400 font-medium">Total expense amount on property - ₹ {{$sum}}</p>
+                <p class="mt-2 text-gray-400 font-medium">Total expense amount on all properties - ₹ {{$sum}}</p>
             </div>
             <div class="flex items-center gap-4">
                 <a href="{{route('createExpenses')}}"><button class="bg-purple-800 text-white rounded-md pr-4 pl-4 pt-2 pb-2">+ New Expense</button></a>
