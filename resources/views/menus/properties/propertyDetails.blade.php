@@ -62,32 +62,54 @@
 
             </div>
             <div  id="attachments" class="hidden mt-6">
-                @php
-                    $unserializeThis = $property->file;
-                    $list = unserialize($unserializeThis);
-                @endphp
-                <div class="flex flex-cols gap-4">
-                    @for ($i = 0; $i < count($list); $i++)
-                        @php
-                            $path = $list[$i];
-                            $info = pathInfo($path);
-                            $extension = $info['extension'];
-                            $hello = str_replace('/','_',$path)
-                        @endphp
+                @if ($property->file !== null)
+                    @php
+                        $unserializeThis = $property->file;
+                        $list = unserialize($unserializeThis);
+                    @endphp
+                    <div class="flex flex-cols gap-4">
+                        @for ($i = 0; $i < count($list); $i++)
+                            @php
+                                $path = $list[$i];
+                                $info = pathInfo($path);
+                                $extension = $info['extension'];
+                                $hello = str_replace('/','_',$path)
+                            @endphp
 
-                        @if ($extension == 'xlsx')
+                            @if ($extension == 'xlsx')
 
-                            <div class="flex">
-                                <a href="{{route('showFile',$hello)}}"><img src="/images/xlsx_icon.png" class= "h-[150px] w-[150px]" alt=""></a>
+                                <div class="flex">
+                                    <img src="/images/xlsx_icon.png"  class= "h-[150px] w-[150px]" alt="">
+                                </div>
+                            @else
+                                <div class="flex">
+                                    <img src="/storage/{{$list[$i]}}" class= "h-[150px] w-[150px] cursor-pointer image" alt="">
+                                </div>
+                            @endif
+
+                        @endfor
+                    </div>
+                    <!-- The modal -->
+                    <div id="myModal" class="modal fixed w-full h-full top-0 left-0 flex justify-center items-center bg-black bg-opacity-75 overflow-hidden hidden">
+                        <!-- Button to close the modal -->
+                        <span class="close absolute top-4 right-4 text-white text-3xl cursor-pointer">&times;</span>
+
+                        <!-- Contents of the modal, i.e., images -->
+                        <div class="modal-content max-w-[80%] h-[80vh] relative">
+                            <!-- Image container -->
+                            <div class="w-full h-full flex justify-center items-center">
+
+                                <img id="modalImage" class="max-w-full max-h-full object-contain" />
                             </div>
-                        @else
-                            <div class="flex">
-                                <a href="{{route('showFile',$property->title)}}"><img src="/storage/{{$list[$i]}}" class= "h-[150px] w-[150px]" alt=""></a>
-                            </div>
-                        @endif
+                            <!-- Div that has the preview images of previous and next images, if any -->
+                            <div id="previewImages" class="flex justify-center items-center mt-4"></div>
+                        </div>
+                        <span class="left absolute left-10 top-1/2 text-white"><i class="fa-solid fa-arrow-left-long text-6xl cursor-pointer" onclick="prevImage()"></i></span>
+                        <span class="right absolute right-10 top-1/2 text-white"><i class="fa-solid fa-arrow-right-long text-6xl cursor-pointer" onclick="nextImage()"></i></span>
+                    </div>
 
-                    @endfor
-                </div>
+
+                @endif
             </div>
             <div  id="location" class="hidden h-[500px] mt-6 col-span-2 mb-4 border-t border-gray-300" >
                 <div id='justDoIt' class="h-[500px] w-full  ">
@@ -144,6 +166,105 @@
                 mapInitialized = 1;
             }
         }
+
+        // Get all images with the 'image' class
+        var images = document.querySelectorAll('.image');
+
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the modal content (image)
+        var modalImg = document.getElementById("modalImage");
+
+        // Get the index of the current image
+        var currentIndex = 0;
+
+        // For each image, add a click event listener
+        images.forEach(function(image, index) {
+            image.addEventListener('click', function() {
+                // Set the source of the modal image to the clicked image source
+                modalImg.src = this.src;
+                // Show the modal
+                modal.classList.remove("hidden");
+                // Set the current index
+                currentIndex = index;
+                // Update preview images
+                updatePreviewImages();
+            });
+        });
+
+        // Get the <span> element that closes the modal
+        var span = document.querySelector(".close");
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.classList.add("hidden");
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.classList.add("hidden");
+            }
+        }
+
+        // Listen for arrow key presses
+        document.addEventListener('keydown', function(event) {
+            if (!modal.classList.contains('hidden')) {
+                if (event.key === 'ArrowLeft') {
+                    // Go to the previous image
+                    prevImage();
+                } else if (event.key === 'ArrowRight') {
+                    // Go to the next image
+                    nextImage();
+                }
+            }
+        });
+
+        // Get the preview images container
+        var previewImagesContainer = document.getElementById("previewImages");
+
+        // Create and append preview images
+        function updatePreviewImages() {
+            // Clear previous preview images
+            previewImagesContainer.innerHTML = "";
+
+            // Show preview images of previous and next images
+            for (var i = Math.max(0, currentIndex - 1); i <= Math.min(images.length - 1, currentIndex + 1); i++) {
+                var previewImage = document.createElement('img');
+                previewImage.src = images[i].src;
+                previewImage.classList.add('h-12', 'w-12', 'object-cover', 'cursor-pointer', 'mx-1', 'border', 'border-gray-300');
+
+                // Highlight the current image
+                if (i === currentIndex) {
+                previewImage.classList.add('border-blue-500');
+                }
+
+                // Add click event to change main image
+                previewImage.addEventListener('click', function() {
+                modalImg.src = this.src;
+                currentIndex = Array.from(previewImagesContainer.children).indexOf(this);
+                updatePreviewImages();
+                });
+
+                previewImagesContainer.appendChild(previewImage);
+            }
+        }
+
+        // Get the previous image
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            modalImg.src = images[currentIndex].src;
+            updatePreviewImages();
+        }
+
+        // Get the next image
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            modalImg.src = images[currentIndex].src;
+            updatePreviewImages();
+        }
+
     </script>
 
 @endsection
