@@ -81,6 +81,18 @@
                                 <div class="flex">
                                     <a href="{{route('downloadPropertiesFile',['propId' => $property->id, 'fileName' => $hello])}}"><img src="/images/xlsx_icon.png"  class= "h-[150px] w-[150px]" alt=""></a>
                                 </div>
+                            @elseif ($extension == 'pdf')
+                                <div class="flex">
+                                    <a href="{{route('downloadPropertiesFile',['propId' => $property->id, 'fileName' => $hello])}}"><img src="/images/pdf-file-format.png"  class= "h-[150px] w-[150px]" alt=""></a>
+                                </div>
+                            @elseif ($extension == 'csv')
+                                <div class="flex">
+                                    <a href="{{route('downloadPropertiesFile',['propId' => $property->id, 'fileName' => $hello])}}"><img src="/images/csv-file.png"  class= "h-[150px] w-[150px]" alt=""></a>
+                                </div>
+                            @elseif ($extension == 'doc' || $extension == 'docx')
+                                <div class="flex">
+                                    <a href="{{route('downloadPropertiesFile',['propId' => $property->id, 'fileName' => $hello])}}"><img src="/images/word.png"  class= "h-[150px] w-[150px] px-4" alt=""></a>
+                                </div>
                             @else
                                 <div class="flex">
                                     <img src="/storage/{{$list[$i]}}" class= "h-[150px] w-[150px] cursor-pointer image" alt="">
