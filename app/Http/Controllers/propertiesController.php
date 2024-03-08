@@ -37,9 +37,9 @@ class propertiesController extends Controller
     public function store(){
 
         $validated = request()->validate([
-            'title' => 'required|min:8|max:50',
-            'address_line_1' => 'required|min:2|max:30',
-            'address_line_2' => 'required|min:2|max:30',
+            'title' => 'required|min:2|max:50',
+            'address_line_1' => 'required|min:2|max:50',
+            'address_line_2' => 'required|min:2|max:50',
             'country' => 'required|min:2|max:30',
             'state' => 'required|min:2|max:30',
             'city' => 'required|min:2|max:30',
@@ -54,17 +54,22 @@ class propertiesController extends Controller
 
         $property = Property::create($validated);
 
-        if(request()->has('file')){
-
-            $validated_file = request()->validate([
-                'file' => 'file',
+        if(request()->has('files')){
+            $validated_files = request()->validate([
+                'files.*' => 'file',
             ]);
 
-            $filePath = request()->file('file')->store($property->user_id.'/property'.$property->id.'/file'.'/','public');
-            $validated_file['file'] = $filePath;
+            $filePaths = [];
 
-            $property->file = $validated_file['file'];
+            foreach(request()->file('files') as $file) {
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->storeas($property->user_id.'/property'.'/'.$property->id.'/file',$fileName,'public');
+                $file = $filePath;
+                $filePaths[] = $filePath;
+            }
 
+            // Serialize the array of file paths before saving to the database
+            $property->file = serialize($filePaths);
             $property->save();
         }
 

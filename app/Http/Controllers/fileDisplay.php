@@ -13,6 +13,8 @@ class fileDisplay extends Controller
     public function downloadFile($propId, $fileName)
     {
         $hello = str_replace('_', '/', $fileName);
+
+        $name = explode('file/',$hello);
         $down = 'public/'.$hello;
         if (Storage::disk('public')->exists($hello)) {
 
@@ -20,7 +22,7 @@ class fileDisplay extends Controller
                 'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             ];
 
-            return Storage::download($down, 'xlsx' , $headers);
+            return Storage::download($down, $name[1] , $headers);
         } else {
 
             abort(404, 'File not found');

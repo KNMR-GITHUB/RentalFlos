@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="bg-white rounded-sm border mt-8 border-gray-300 p-4">
-            <form action="storeProperties" method="post" enctype="multipart/form-data">
+            <form action="storeProperties" method="post" enctype="multipart/form-data" multiple>
                 @csrf
                 <div class="grid lg:grid-cols-2 pr-2 pl-2 gap-4 pb-4">
                     <div>

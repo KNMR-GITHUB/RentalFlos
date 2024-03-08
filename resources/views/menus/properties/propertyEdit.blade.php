@@ -154,8 +154,8 @@
         myMarker.addTo(map);
         osm.addTo(map);
 
-         // Get reference to file input, file preview container, and form
-         const fileInput = document.getElementById('file_upload');
+        // Get reference to file input, file preview container, and form
+        const fileInput = document.getElementById('file_upload');
         const filePreviews = document.getElementById('file-previews');
         const fileForm = document.getElementById('file-form');
 
@@ -196,18 +196,6 @@
                     addPreview(file);
                 });
             }
-        });
-
-        // Add event listener for form submission
-        fileForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            // Here, you can handle the submission of all selected files to the server
-            // For demonstration purposes, log the selected files to the console
-            console.log('Selected Files:', selectedFiles);
-
-            // You can include logic here to submit the form data to the server
-            // For example, you can use AJAX to send the files to the server
         });
     </script>
 
