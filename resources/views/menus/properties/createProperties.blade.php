@@ -102,7 +102,9 @@
 
                 <div class="border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
                     <label for="file_upload" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">File Upload</label>
-                        <input type="file" accept="*" placeholder="Choose file" id="file_upload" name="file" value="{{old('file_upload')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
+                    <input type="file" accept="*" placeholder="Choose file" id="file_upload" name="files[]" value="" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" multiple>
+                    <br>
+                    <div class="flex" id="file-previews"></div>
                         @error('file_upload')
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
@@ -149,6 +151,51 @@
 
         myMarker.addTo(map);
         osm.addTo(map);
+
+        // file upload
+        // Get reference to file input, file preview container, and form
+        const fileInput = document.getElementById('file_upload');
+        const filePreviews = document.getElementById('file-previews');
+        const fileForm = document.getElementById('file-form');
+
+        // Array to store references to selected files and previews
+        let selectedFiles = [];
+
+        // Function to add a preview for a file
+        function addPreview(file) {
+            const reader = new FileReader(); // Initialize FileReader object
+
+            // Set up FileReader onload event
+            reader.onload = function(e) {
+                // Create image element for preview
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '200px';
+                img.style.maxHeight = '200px';
+
+                // Append image to file preview container
+                filePreviews.appendChild(img);
+            };
+
+            // Read the file as a data URL (base64 encoding)
+            reader.readAsDataURL(file);
+        }
+
+        // Add event listener for file input change
+        fileInput.addEventListener('change', function() {
+            const files = this.files; // Get the selected files
+
+            if (files.length > 0) {
+                // Loop through each selected file
+                Array.from(files).forEach(file => {
+                    // Add the file to the array of selected files
+                    selectedFiles.push(file);
+
+                    // Add preview for the file
+                    addPreview(file);
+                });
+            }
+        });
 
     </script>
 

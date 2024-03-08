@@ -73,7 +73,8 @@
                                 $path = $list[$i];
                                 $info = pathInfo($path);
                                 $extension = $info['extension'];
-                                $hello = str_replace('/','_',$path)
+                                $hello = str_replace('/','_',$path);
+                                $fileName = explode('file/',$path);
                             @endphp
 
                             @if ($extension == 'xlsx')
@@ -94,8 +95,9 @@
                                     <a href="{{route('downloadPropertiesFile',['propId' => $property->id, 'fileName' => $hello])}}"><img src="/images/word.png"  class= "h-[150px] w-[150px] px-4" alt=""></a>
                                 </div>
                             @else
-                                <div class="flex">
+                                <div class="block w-[150px]">
                                     <img src="/storage/{{$list[$i]}}" class= "h-[150px] w-[150px] cursor-pointer image" alt="">
+                                    <p>{{$fileName[1]}}</p>
                                 </div>
                             @endif
 
