@@ -118,15 +118,18 @@ class propertiesController extends Controller
 
         $property->update($validated);
 
-        if($property->file !== null){
-            $toDelete = unserialize($property->file);
-            for ($i=0; $i < count($toDelete) ; $i++) {
-                Storage::disk('public')->delete($toDelete[$i]);
-            }
 
-        }
 
         if(request()->hasFile('files')) {
+
+            if($property->file !== null){
+                $toDelete = unserialize($property->file);
+                for ($i=0; $i < count($toDelete) ; $i++) {
+                    Storage::disk('public')->delete($toDelete[$i]);
+                }
+
+            }
+
             $validated_files = request()->validate([
                 'files.*' => 'file',
             ]);

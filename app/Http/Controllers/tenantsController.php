@@ -103,15 +103,18 @@ class tenantsController extends Controller
 
         }
 
-        if($tenant->file !== null){
-            $toDelete = unserialize($tenant->file);
-            for ($i=0; $i < count($toDelete) ; $i++) {
-                Storage::disk('public')->delete($toDelete[$i]);
-            }
 
-        }
 
         if(request()->hasFile('files')) {
+
+            if($tenant->file !== null){
+                $toDelete = unserialize($tenant->file);
+                for ($i=0; $i < count($toDelete) ; $i++) {
+                    Storage::disk('public')->delete($toDelete[$i]);
+                }
+
+            }
+
             $validated_files = request()->validate([
                 'files.*' => 'file',
             ]);

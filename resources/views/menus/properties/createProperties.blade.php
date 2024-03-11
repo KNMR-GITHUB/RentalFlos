@@ -2,6 +2,7 @@
 @section('content')
     <div class="flex flex-col p-10">
         <div class="flex justify-between">
+            <!-- Page title and info -->
             <div>
                 <h1 class="text-2xl font-semibold">Properties</h1>
                 <p class="mt-2 text-gray-400 font-medium">Fill new property details.</p>
@@ -11,8 +12,10 @@
             </div>
         </div>
         <div class="bg-white rounded-sm border mt-8 border-gray-300 p-4">
+            <!-- Form -->
             <form action="storeProperties" method="post" enctype="multipart/form-data" multiple>
                 @csrf
+                <!-- Expense form fields -->
                 <div class="grid lg:grid-cols-2 pr-2 pl-2 gap-4 pb-4">
                     <div>
                         <label for="title" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">Title</label>
@@ -91,7 +94,7 @@
                     </div>
 
                 </div>
-
+                <!-- Description -->
                 <div class="border-t border-b border-gray-300 mt-4 mb-4 pb-4 pr-2 pl-2">
                     <label for="description" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">Description</label>
                         <input type="text" placeholder="Enter description" id="description" name="description" value="{{old('description')}}" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" required>
@@ -111,6 +114,7 @@
                             <span class="text-red-400">{{$message}}</span>
                         @enderror
                 </div>
+                <!-- location -->
                 <div class="border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
                     <label for="latitude">latitude</label>
                     <input id='latitude' type="number" step="0.0000000000000001" placeholder="latitude" name="latitude" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
@@ -118,9 +122,12 @@
                     <input id='longitude' type="number" step="0.0000000000000001" placeholder="longitude" name="longitude" class="border rounded w-full py-2 px-3 text-gray-700 text-sm">
                 </div>
 
+                <!-- Map Container -->
                 <div id='justDoIt' class="h-80 border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
 
                 </div>
+
+                <!-- Submit Button -->
                 <button class="rounded-md bg-purple-800 text-white pt-2 pb-2 pl-5 pr-5">
                     ✓ Save
                 </button>
@@ -144,6 +151,7 @@
         // myMarker.addTo(map) will add the marker (this is a very basic marker)
         myMarker.addTo(map)
 
+        // set lat and long values
         map.on('click',function(e) {
             myMarker.setLatLng(e.latlng)
 
@@ -151,10 +159,15 @@
             document.getElementById('longitude').value = e.latlng.lng;
         });
 
+        // add new marker to map
         myMarker.addTo(map);
+        // add layer to map
         osm.addTo(map);
 
+        //
         // file upload
+        //
+
         const fileInput = document.getElementById('file_upload');
         // Get a reference to the file previews container
         const filePreviews = document.getElementById('file-previews');

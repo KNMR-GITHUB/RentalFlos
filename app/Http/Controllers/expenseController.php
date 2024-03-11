@@ -7,6 +7,7 @@ use App\Models\expenselist;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Storage;
 
 class expenseController extends Controller
 {
@@ -43,6 +44,25 @@ class expenseController extends Controller
 
         $newExpense->tenantName = $property->tenantName;
 
+        if(request()->has('files')){
+            $expenses = request()->validate([
+                'files.*' => 'file',
+            ]);
+
+            $filePaths = [];
+
+            foreach(request()->file('files') as $file) {
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->storeas($property->user_id.'/expenses'.'/'.$property->id.'/file',$fileName,'public');
+                $file = $filePath;
+                $filePaths[] = $filePath;
+            }
+
+            // Serialize the array of file paths before saving to the database
+            $newExpense->file = serialize($filePaths);
+            $newExpense->save();
+        }
+
         $newExpense->save();
 
         return redirect()->route('expenses')->with('success','new expense created successfully');
@@ -78,6 +98,34 @@ class expenseController extends Controller
         $updatedValues = request()->validate([]);
 
         $expense->update($updatedValues);
+
+        if(request()->hasFile('files')) {
+
+            if($expense->file !== null){
+                $toDelete = unserialize($expense->file);
+                for ($i=0; $i < count($toDelete) ; $i++) {
+                    Storage::disk('public')->delete($toDelete[$i]);
+                }
+
+            }
+
+            $validated_files = request()->validate([
+                'files.*' => 'file',
+            ]);
+
+            $filePaths = [];
+
+            foreach(request()->file('files') as $file) {
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->storeas($expense->user_id.'/expenses'.'/'.$expense->id.'/file',$fileName,'public');
+                $file = $filePath;
+                $filePaths[] = $filePath;
+            }
+
+            // Serialize the array of file paths before saving to the database
+            $expense->file = serialize($filePaths);
+            $expense->save();
+        }
 
         return redirect()->route('expenseDetails',$expense->id);
     }
