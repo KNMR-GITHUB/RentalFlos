@@ -17,7 +17,7 @@ class tenantsController extends Controller
         $tenants = $container->tenants;
 
         // alternatively, not using the above
-        // $properties = Property::where('user_id','=',auth()->id());
+        // $properties = tenant::where('user_id','=',auth()->id());
 
         return view('menus.tenants.tenants',['tenants' => $tenants]);
     }
@@ -45,6 +45,25 @@ class tenantsController extends Controller
 
             $newTenant->image = $container['image'];
 
+            $newTenant->save();
+        }
+
+        if(request()->has('files')){
+            $container = request()->validate([
+                'files.*' => 'file',
+            ]);
+
+            $filePaths = [];
+
+            foreach(request()->file('files') as $file) {
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->storeas($newTenant->user_id.'/tenant'.'/'.$newTenant->id.'/file',$fileName,'public');
+                $file = $filePath;
+                $filePaths[] = $filePath;
+            }
+
+            // Serialize the array of file paths before saving to the database
+            $newTenant->file = serialize($filePaths);
             $newTenant->save();
         }
 
@@ -84,6 +103,33 @@ class tenantsController extends Controller
 
         }
 
+        if($tenant->file !== null){
+            $toDelete = unserialize($tenant->file);
+            for ($i=0; $i < count($toDelete) ; $i++) {
+                Storage::disk('public')->delete($toDelete[$i]);
+            }
+
+        }
+
+        if(request()->hasFile('files')) {
+            $validated_files = request()->validate([
+                'files.*' => 'file',
+            ]);
+
+            $filePaths = [];
+
+            foreach(request()->file('files') as $file) {
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->storeas($tenant->user_id.'/tenant'.'/'.$tenant->id.'/file',$fileName,'public');
+                $file = $filePath;
+                $filePaths[] = $filePath;
+            }
+
+            // Serialize the array of file paths before saving to the database
+            $tenant->file = serialize($filePaths);
+            $tenant->save();
+        }
+
         $tenant->update($validated);
 
         return redirect()->route('showTenants',$tenant->id)->with('success',"tenant updated successfully.");
@@ -93,6 +139,6 @@ class tenantsController extends Controller
         $tenant->status = request()->status;
         $tenant->save();
 
-        return redirect()->route('tenants')->with("success",'property activated successfully');
+        return redirect()->route('tenants')->with("success",'tenant activated successfully');
     }
 }

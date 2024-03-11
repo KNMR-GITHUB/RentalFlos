@@ -67,7 +67,7 @@
                         $unserializeThis = $property->file;
                         $list = unserialize($unserializeThis);
                     @endphp
-                    <div class="flex flex-cols gap-4">
+                    <div class="flex gap-4">
                         @for ($i = 0; $i < count($list); $i++)
                             @php
                                 $path = $list[$i];
@@ -79,20 +79,24 @@
 
                             @if ($extension == 'xlsx')
 
-                                <div class="flex">
+                                <div class="block">
                                     <a href="{{route('downloadPropertiesFile',['propId' => $property->id, 'fileName' => $hello])}}"><img src="/images/xlsx_icon.png"  class= "h-[150px] w-[150px]" alt=""></a>
+                                    <p>{{$fileName[1]}}</p>
                                 </div>
                             @elseif ($extension == 'pdf')
-                                <div class="flex">
+                                <div class="block">
                                     <a href="{{route('downloadPropertiesFile',['propId' => $property->id, 'fileName' => $hello])}}"><img src="/images/pdf-file-format.png"  class= "h-[150px] w-[150px]" alt=""></a>
+                                    <p>{{$fileName[1]}}</p>
                                 </div>
                             @elseif ($extension == 'csv')
-                                <div class="flex">
+                                <div class="block">
                                     <a href="{{route('downloadPropertiesFile',['propId' => $property->id, 'fileName' => $hello])}}"><img src="/images/csv-file.png"  class= "h-[150px] w-[150px]" alt=""></a>
+                                    <p>{{$fileName[1]}}</p>
                                 </div>
                             @elseif ($extension == 'doc' || $extension == 'docx')
-                                <div class="flex">
+                                <div class="block">
                                     <a href="{{route('downloadPropertiesFile',['propId' => $property->id, 'fileName' => $hello])}}"><img src="/images/word.png"  class= "h-[150px] w-[150px] px-4" alt=""></a>
+                                    <p>{{$fileName[1]}}</p>
                                 </div>
                             @else
                                 <div class="block w-[150px]">

@@ -100,10 +100,12 @@
                         @enderror
                 </div>
 
+                <!--File Upload-->
                 <div class="border-b border-gray-300 mb-4 pb-4 pr-2 pl-2">
                     <label for="file_upload" class="mt-2 block text-gray-700 text-sm font-semibold mb-2">File Upload</label>
                     <input type="file" accept="*" placeholder="Choose file" id="file_upload" name="files[]" value="" class="border rounded w-full py-2 px-3 text-gray-700 text-sm" multiple>
                     <br>
+                    <!--File Preview-->
                     <div class="flex" id="file-previews"></div>
                         @error('file_upload')
                             <span class="text-red-400">{{$message}}</span>
@@ -153,47 +155,59 @@
         osm.addTo(map);
 
         // file upload
-        // Get reference to file input, file preview container, and form
         const fileInput = document.getElementById('file_upload');
+        // Get a reference to the file previews container
         const filePreviews = document.getElementById('file-previews');
-        const fileForm = document.getElementById('file-form');
 
-        // Array to store references to selected files and previews
-        let selectedFiles = [];
-
-        // Function to add a preview for a file
-        function addPreview(file) {
-            const reader = new FileReader(); // Initialize FileReader object
-
-            // Set up FileReader onload event
-            reader.onload = function(e) {
-                // Create image element for preview
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.maxWidth = '200px';
-                img.style.maxHeight = '200px';
-
-                // Append image to file preview container
-                filePreviews.appendChild(img);
-            };
-
-            // Read the file as a data URL (base64 encoding)
-            reader.readAsDataURL(file);
-        }
-
-        // Add event listener for file input change
+        // Add event listener to the file input for change event
         fileInput.addEventListener('change', function() {
-            const files = this.files; // Get the selected files
+            // Clear previous previews
+            filePreviews.innerHTML = '';
 
-            if (files.length > 0) {
-                // Loop through each selected file
-                Array.from(files).forEach(file => {
-                    // Add the file to the array of selected files
-                    selectedFiles.push(file);
+            // Loop through each file selected
+            for (const file of this.files) {
+                // Create a container for the file preview
+                const previewContainer = document.createElement('div');
+                previewContainer.classList.add('block', 'items-center', );
 
-                    // Add preview for the file
-                    addPreview(file);
-                });
+                // Create a new image element
+                const img = document.createElement('img');
+                // Set the file URL as the image source
+                const fileName = file.name;
+                const fileExtension = fileName.split('.').pop();
+
+                if (fileExtension == 'pdf') {
+                    img.src = '/images/pdf-file-format.png';
+                }
+                else if(fileExtension == 'xls' || fileExtension == 'xlsx'){
+                    img.src = '/images/xlsx_icon.png';
+                }
+                else if(fileExtension == 'doc' || fileExtension == 'docx'){
+                    img.src = '/images/word.png';
+                }
+                else if(fileExtension == 'csv'){
+                    img.src = '/images/csv-file.png';
+                }
+                else {
+                    img.src = URL.createObjectURL(file);
+                }
+
+                // Set some styles for the image
+                img.classList.add('w-36', 'h-36', 'object-cover', 'm-1');
+
+                // Append the image to the preview container
+                previewContainer.appendChild(img);
+
+                // Create a new paragraph element for the file name
+                const fileNamePara = document.createElement('p');
+                fileNamePara.textContent = file.name; // Set the file name as text content
+                fileNamePara.classList.add('text-sm', 'text-gray-700', 'ml-1', 'w-36');
+
+                // Append the file name paragraph to the preview container
+                previewContainer.appendChild(fileNamePara);
+
+                // Append the preview container to the file previews container
+                filePreviews.appendChild(previewContainer);
             }
         });
 
