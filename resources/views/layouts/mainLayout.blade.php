@@ -11,9 +11,9 @@
 </head>
 <body>
     {{--Main--}}
-    <div id='main' class="grid grid-flow-col grid-cols-[1.1fr,6fr]">
+    <div id='main' class="flex">
         {{--Left--}}
-        <div id="nav" class="sticky top-0 left-0 h-screen flex flex-col ">
+        <div id="nav" class="sticky top-0 left-0 h-screen flex flex-col w-[300px] xl:-translate-x-72 xl:w-0">
             {{--Logo--}}
             <div class=" h-16 flex items-center pl-4 border-b border-gray-300">
                 <a href="{{route('dashboard')}}"><img class="h-9" src='/images/logo.png' alt="rental flo logo"></a>
@@ -44,7 +44,7 @@
 
         </div>
         {{--Right--}}
-        <div id="body" class="flex relative flex-col h-full">
+        <div id="body" class="flex relative flex-col h-full w-full">
             {{--Nav Bar--}}
             <div id="user_profile" class="bg-white border-l border-b border-gray-300 m-0 p-0 h-16 sticky top-0">
                 <div class="flex flex-row-reverse">
