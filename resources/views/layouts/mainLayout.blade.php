@@ -13,7 +13,7 @@
     {{--Main--}}
     <div id='main' class="flex">
         {{--Left--}}
-        <div id="nav" class="sticky top-0 left-0 h-screen flex flex-col w-[300px] xl:-translate-x-72 xl:w-0">
+        <div id="nav" class="sticky top-0 left-0 h-screen flex flex-col w-[300px] ease-in-out duration-300">
             {{--Logo--}}
             <div class=" h-16 flex items-center pl-4 border-b border-gray-300">
                 <a href="{{route('dashboard')}}"><img class="h-9" src='/images/logo.png' alt="rental flo logo"></a>
@@ -46,7 +46,7 @@
         {{--Right--}}
         <div id="body" class="flex relative flex-col h-full w-full">
             {{--Nav Bar--}}
-            <div id="user_profile" class="bg-white border-l border-b border-gray-300 m-0 p-0 h-16 sticky top-0">
+            <div id="user_profile" class="bg-white border-l border-b border-gray-300 m-0 p-0 h-16 sticky top-0 ">
                 <div class="flex flex-row-reverse">
                     @auth
 
@@ -147,6 +147,19 @@
                     if(!clickedOn){
                         document.getElementById('profileCard').classList.add('hidden');
                     }
+        });
+
+        window.addEventListener('resize',function(){
+            var width = window.innerWidth;
+            if(width <= 1200){
+                document.getElementById('nav').classList.add('-translate-x-[300px]');
+                document.getElementById('nav').classList.remove('w-[300px]');
+                document.getElementById('nav').classList.add('w-0');
+            } else{
+                document.getElementById('nav').classList.remove('-translate-x-[300px]');
+                document.getElementById('nav').classList.add('w-[300px]');
+                document.getElementById('nav').classList.remove('w-0');
+            }
         });
     </script>
 
