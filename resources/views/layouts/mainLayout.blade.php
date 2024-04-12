@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RentalFlos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    @livewireStyles
 </head>
 <body>
     {{--Main--}}
@@ -21,23 +22,25 @@
             {{--Menu links--}}
             <div class="p-8">
                 <ul class="h-full">
-                    <li class="{{(Route::is('dashboard')) ? 'text-blue-500':''}}  font-semibold  mb-5 hover:text-blue-500"> <a href="{{route('dashboard')}}">
-                        <i class="fa-solid fa-table-cells-large mr-3"></i> Dashboard</a>
+                    <li class="{{(Route::is('dashboard')) ? 'text-blue-500':''}}  font-semibold  mb-5 hover:text-blue-500">
+                        <a wire:navigate href="{{route('dashboard')}}">
+                            <i class="fa-solid fa-table-cells-large mr-3"></i> Dashboard
+                        </a>
                     </li>
                     <li class="{{(Route::is('properties')) || (Route::is('editProperties')) || (Route::is('showProperties')) || (Route::is('createProperties')) ? 'text-blue-500':''}} font-semibold  mb-5 hover:text-blue-500">
-                         <a href="{{route('properties')}}"><i class="fa-solid fa-hotel mr-3"></i> Properties</a>
+                         <a wire:navigate href="{{route('properties')}}"><i class="fa-solid fa-hotel mr-3"></i> Properties</a>
                     </li>
                     <li class="{{(Route::is('tenants')) || (Route::is('editTenants')) || (Route::is('showTenants')) || (Route::is('createTenants')) ? 'text-blue-500':''}}  font-semibold  mb-5 hover:text-blue-500">
-                        <a href="{{route('tenants')}}"><i class="fa-solid fa-user-group mr-2"></i> Tenants</a>
+                        <a wire:navigate href="{{route('tenants')}}"><i class="fa-solid fa-user-group mr-2"></i> Tenants</a>
                     </li>
                     <li class="{{(Route::is('rent')) ? 'text-blue-500':''}} font-semibold  mb-5 hover:text-blue-500">
-                        <a href="{{route('rent')}}"><i class="fa-solid fa-indian-rupee-sign mr-4 ml-1"></i> Rent</a>
+                        <a wire:navigate href="{{route('rent')}}"><i class="fa-solid fa-indian-rupee-sign mr-4 ml-1"></i> Rent</a>
                     </li>
                     <li class="{{(Route::is('expenses')) || (Route::is('createExpenses')) ? 'text-blue-500':''}}  font-semibold  mb-5 hover:text-blue-500">
-                        <a href="{{route('expenses')}}"><i class="fa-solid fa-coins mr-3"></i> Expenses</a>
+                        <a wire:navigate href="{{route('expenses')}}"><i class="fa-solid fa-coins mr-3"></i> Expenses</a>
                     </li>
                     <li class="{{(Route::is('settings')) || (Route::is('edit_profile')) ? 'text-blue-500':''}} font-semibold  mb-5 hover:text-blue-500">
-                        <a href="{{route('settings')}}"><i class="fa-solid fa-sliders mr-3"></i> Settings</a>
+                        <a wire:navigate href="{{route('settings')}}"><i class="fa-solid fa-sliders mr-3"></i> Settings</a>
                     </li>
                 </ul>
             </div>
@@ -163,5 +166,7 @@
         });
     </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    @livewireScripts
 </body>
 </html>

@@ -121,136 +121,138 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <script>
-            const prop = document.getElementById('propActive');
-            const tent = document.getElementById('tentActive');
-            const nut = document.getElementById('circle');
-            const rent = document.getElementById('rentG');
+    <script >
 
-            var propChart = new Chart(prop, {
-                type: 'bar',
-                data: {
-                labels: ['Active'],
-                datasets: [{
-                    label: 'Active Properties',
-                    data: [{{$property->count()}}],
-                    backgroundColor: [
-                        'rgba(250, 247, 200, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgba(237, 227, 74)',
-                    ],
-                    borderWidth: 1
-                }]
-                },
-                options: {
-                    plugins: {
-                            legend: {
-                            display: false,
-                        }
+                const prop = document.getElementById('propActive');
+                const tent = document.getElementById('tentActive');
+                const nut = document.getElementById('circle');
+                const rent = document.getElementById('rentG');
+
+
+                var propChart = new Chart(prop, {
+                    type: 'bar',
+                    data: {
+                    labels: ['Active'],
+                    datasets: [{
+                        label: 'Active Properties',
+                        data: [{{$property->count()}}],
+                        backgroundColor: [
+                            'rgba(250, 247, 200, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(237, 227, 74)',
+                        ],
+                        borderWidth: 1
+                    }]
                     },
-
-
-                    scales: {
-                        x: {
-                            display: false,
-                            grid: {
-                                drawBorder: false
+                    options: {
+                        plugins: {
+                                legend: {
+                                display: false,
                             }
                         },
 
-                        y: {
-                            display: false,
-                            beginAtZero: true,
-                            grid: {
-                                drawOnChartArea: false,
-                                drawBorder: false
-                            }
 
+                        scales: {
+                            x: {
+                                display: false,
+                                grid: {
+                                    drawBorder: false
+                                }
+                            },
+
+                            y: {
+                                display: false,
+                                beginAtZero: true,
+                                grid: {
+                                    drawOnChartArea: false,
+                                    drawBorder: false
+                                }
+
+                            }
                         }
                     }
-                }
-            });
+                });
 
-            var tentChart = new Chart(tent, {
-                type: 'bar',
-                data: {
-                labels: ['Active'],
-                datasets: [{
-                    label: 'Active Tenants',
-                    data: [{{$tenant->count()}}],
-                    backgroundColor: [
-                        'rgba(250, 247, 200, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgba(237, 227, 74)',
-                    ],
-                    borderWidth: 1
-                }]
-                },
-                options: {
-                    plugins: {
-                            legend: {
-                            display: false,
-                        }
+                var tentChart = new Chart(tent, {
+                    type: 'bar',
+                    data: {
+                    labels: ['Active'],
+                    datasets: [{
+                        label: 'Active Tenants',
+                        data: [{{$tenant->count()}}],
+                        backgroundColor: [
+                            'rgba(250, 247, 200, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(237, 227, 74)',
+                        ],
+                        borderWidth: 1
+                    }]
                     },
-
-
-                    scales: {
-                        x: {
-                            display: false,
-                            grid: {
-                                drawBorder: false
+                    options: {
+                        plugins: {
+                                legend: {
+                                display: false,
                             }
                         },
 
-                        y: {
-                            display: false,
-                            beginAtZero: true,
-                            grid: {
-                                drawOnChartArea: false,
-                                drawBorder: false
-                            }
 
+                        scales: {
+                            x: {
+                                display: false,
+                                grid: {
+                                    drawBorder: false
+                                }
+                            },
+
+                            y: {
+                                display: false,
+                                beginAtZero: true,
+                                grid: {
+                                    drawOnChartArea: false,
+                                    drawBorder: false
+                                }
+
+                            }
                         }
                     }
-                }
-            });
+                });
 
-            var nutChart = new Chart(nut, {
-                type: 'doughnut',
-                data: {
-                    labels: ["Collected", "Not Collected",],
-                    datasets: [{
+                var nutChart = new Chart(nut, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ["Collected", "Not Collected",],
+                        datasets: [{
 
-                    data: [20, 40,],
-                    backgroundColor: ['rgba(120, 21, 138, 0.6)', 'rgba(17, 96, 242, 0.7)',],
-                    hoverOffset: 5
-                    }],
-                },
-                options: {
+                        data: [20, 40,],
+                        backgroundColor: ['rgba(120, 21, 138, 0.6)', 'rgba(17, 96, 242, 0.7)',],
+                        hoverOffset: 5
+                        }],
+                    },
+                    options: {
 
-                },
-            });
-            const DATA_COUNT = 12;
-            const randomData = Array.from({ length: DATA_COUNT }, () => Math.floor(Math.random() * 10000000));
-            var rentChart = new Chart(rent, {
-                type: 'line',
-                data: {
-                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                    datasets: [{
-                        label: 'Rent',
-                        data: randomData,
-                        borderColor: 'red',
-                        backgroundColor: 'red',
-                    }],
-                },
-                options: {
+                    },
+                });
+                const DATA_COUNT = 12;
+                const randomData = Array.from({ length: DATA_COUNT }, () => Math.floor(Math.random() * 10000000));
+                var rentChart = new Chart(rent, {
+                    type: 'line',
+                    data: {
+                        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                        datasets: [{
+                            label: 'Rent',
+                            data: randomData,
+                            borderColor: 'red',
+                            backgroundColor: 'red',
+                        }],
+                    },
+                    options: {
 
-                },
-            });
+                    },
+                });
 
     </script>
 
