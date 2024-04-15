@@ -21,7 +21,7 @@
                     <div class="bg-white rounded-sm p-4 h-36 border border-gray-300  text-slate-600 font-semibold">
                         <h1 class="px-2">Active Properties</h1>
                         <div class="h-20 flex">
-                            <div class="p-4 text-3xl flex justify-center items-center">{{$property->count()}}</div>
+                            <div  class="p-4 text-3xl flex justify-center items-center">{{$property->count()}}</div>
                             <canvas id="propActive" class="h-100% pt-4"></canvas>
                         </div>
                     </div>
@@ -123,9 +123,17 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <script >
 
-                const prop = document.getElementById('propActive');
+
+
+    <script>
+
+        var once = 'no'
+
+        if(once == 'no'){
+            once = 'yes';
+
+            const prop = document.getElementById('propActive');
                 const tent = document.getElementById('tentActive');
                 const nut = document.getElementById('circle');
                 const rent = document.getElementById('rentG');
@@ -253,6 +261,10 @@
 
                     },
                 });
+        }
+
+
+
 
     </script>
 
